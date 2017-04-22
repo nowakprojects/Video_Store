@@ -28,7 +28,7 @@ public class CustomersController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     ResponseEntity<List<Customer>> getAllCustomers(){
-        List<Customer> allCustomersList = customersService.getAll();
+        List<Customer> allCustomersList = customersService.getAllCustomers();
         HttpStatus httpStatus = allCustomersList.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return new ResponseEntity<>(allCustomersList, httpStatus);
     }

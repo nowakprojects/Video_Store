@@ -1,6 +1,7 @@
 package pl.nowakprojects.database.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import pl.nowakprojects.database.entity.Movie;
 
 import java.util.List;

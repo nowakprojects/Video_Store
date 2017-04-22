@@ -28,14 +28,14 @@ public class MoviesController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     ResponseEntity<List<Movie>> getAllMovies(){
-        List<Movie> allMoviesList = moviesService.getAll();
+        List<Movie> allMoviesList = moviesService.getAllMovies();
         HttpStatus httpStatus = allMoviesList.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return new ResponseEntity<>(allMoviesList, httpStatus);
     }
 
     @RequestMapping(value = "/saveMovie", method = RequestMethod.POST)
     ResponseEntity<Movie> addMovie(@RequestBody Movie movie){
-        return new ResponseEntity<>(moviesService.save(movie),HttpStatus.CREATED);
+        return new ResponseEntity<>(moviesService.saveMovie(movie),HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.GET)
