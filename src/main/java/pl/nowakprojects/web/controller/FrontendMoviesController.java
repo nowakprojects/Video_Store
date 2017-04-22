@@ -53,6 +53,17 @@ public class FrontendMoviesController {
     String saveMovie(@Valid MovieForm movieForm, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return "movieForm";
+        else{
+            moviesService.saveMovie(
+                    new Movie(
+                            movieForm.getTitle(),
+                            null,
+                            movieForm.getDirector(),
+                            movieForm.getLanguage(),
+                            movieForm.getReleaseYear()
+                    )
+            );
+        }
 
         return "redirect:/movie";
     }

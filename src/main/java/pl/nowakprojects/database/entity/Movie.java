@@ -29,4 +29,12 @@ public class Movie {
     private String language;
 
     private String releaseYear;
+
+    public Movie(String title, Genre genre, String director, String language, String releaseYear) {
+        this.title = title;
+        this.genre = genre;
+        this.director = director;
+        this.language = language;
+        this.releaseYear = releaseYear;
+    }
 }
