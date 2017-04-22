@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Mateusz on 22.04.2017.
  */
-@RequestMapping("/rentals")
+@RequestMapping("/api/rentals")
 @RestController
 public class RentalsController {
 

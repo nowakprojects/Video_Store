@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator = "layout/default">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+<div class="row">
+    <h2 class="indigo-text center" th:text="|Movies list:|">Movies</h2>
+    <ul class="collection">
+        <li class="collection-item movie" th:each="movie : ${movies}">
+            <span class="title" th:text="${movie.title}">Title</span>
+        </li>
+
+    </ul>
+</div>
+<h1>Hello</h1>
+
+</div>
+
+
+</body>
+</html>

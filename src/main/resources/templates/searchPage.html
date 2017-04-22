@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator = "layout/default">
+<head lang="en">
+
+    <title>Search</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+
+<h4 class="indigo-text center">Which movie do you want to search?</h4>
+    <form action="/movies" method="get" class="col s12">
+        <div class="row center">
+            <i class="mdi-action-search prefix"></i>
+            <input id="search" name="title" type="text" class="validate"/>
+            <label for="search">Movie Title</label>
+        </div>
+    </form>
+
+
+</div>
+
+
+</body>
+</html>

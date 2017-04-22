@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Mateusz on 22.04.2017.
  */
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/api/customers")
 public class CustomersController {
 
     private final CustomersService customersService;

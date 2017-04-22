@@ -37,11 +37,11 @@ public class DummyMoviesService implements MoviesService{
     }
 
     private void populateDummyData(){
-        saveMovie(new Movie(null,"Star Wars I", Genre.SCIENCE_FICTION,"George Lucas","English","1999",2));
-        saveMovie(new Movie(null,"Star Wars II",Genre.SCIENCE_FICTION,"George Lucas","English","2002",2));
-        saveMovie(new Movie(null,"Star Wars III",Genre.SCIENCE_FICTION,"George Lucas","English","2005",2));
-        saveMovie(new Movie(null,"Star Wars IV",Genre.SCIENCE_FICTION,"George Lucas","English","1977",2));
-        saveMovie(new Movie(null,"Star Wars V",Genre.SCIENCE_FICTION,"George Lucas","English","1980",2));
-        saveMovie(new Movie(null,"Star Wars VI",Genre.SCIENCE_FICTION,"George Lucas","English","1983",2));
+        saveMovie(new Movie(null,"Star Wars I", Genre.SCIENCE_FICTION,"George Lucas","English","1999"));
+        saveMovie(new Movie(null,"Star Wars II",Genre.SCIENCE_FICTION,"George Lucas","English","2002"));
+        saveMovie(new Movie(null,"Star Wars III",Genre.SCIENCE_FICTION,"George Lucas","English","2005"));
+        saveMovie(new Movie(null,"Star Wars IV",Genre.SCIENCE_FICTION,"George Lucas","English","1977"));
+        saveMovie(new Movie(null,"Star Wars V",Genre.SCIENCE_FICTION,"George Lucas","English","1980"));
+        saveMovie(new Movie(null,"Star Wars VI",Genre.SCIENCE_FICTION,"George Lucas","English","1983"));
     }
 }

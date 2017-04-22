@@ -28,8 +28,4 @@ public class Movie {
     private String language;
 
     private String releaseYear;
-
-    @Column(nullable = false)
-    private Integer quantity;
-
 }

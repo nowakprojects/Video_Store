@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Mateusz on 22.04.2017.
  */
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/api/movies")
 public class MoviesController {
 
     private final MoviesService moviesService;
