@@ -3,14 +3,14 @@ package pl.nowakprojects.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import pl.nowakprojects.buisnesslogic.interfaces.MoviesService;
 import pl.nowakprojects.database.entity.Movie;
 import pl.nowakprojects.database.repository.MoviesRepository;
+import pl.nowakprojects.web.dto.MovieForm;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -42,6 +42,19 @@ public class FrontendMoviesController {
     @RequestMapping("/search")
     String search(Model model){
         return "searchPage";
+    }
+
+    @RequestMapping(value = "/movie", method = RequestMethod.GET)
+    String displayMovie(MovieForm movieForm){
+        return "movieForm";
+    }
+
+    @RequestMapping(value = "/movie", method = RequestMethod.POST)
+    String saveMovie(@Valid MovieForm movieForm, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+            return "movieForm";
+
+        return "redirect:/movie";
     }
 
 

@@ -7,6 +7,7 @@ import pl.nowakprojects.database.entity.Genre;
 import pl.nowakprojects.database.entity.Movie;
 import pl.nowakprojects.database.repository.MoviesRepository;
 
+import java.time.Year;
 import java.util.List;
 
 /**

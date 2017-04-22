@@ -3,6 +3,7 @@ package pl.nowakprojects.database.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.Year;
 
 /**
  * Created by Mateusz on 22.04.2017.

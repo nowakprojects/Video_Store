@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -31,9 +32,9 @@ public class Rental {
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
-    private Date rentDate = new Date();
+    private LocalDate rentDate = LocalDate.now();
 
-    private Date returnDate;
+    private LocalDate returnDate;
 
 
     public Rental(Customer customer, Movie movie) {
