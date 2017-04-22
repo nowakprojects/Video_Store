@@ -33,6 +33,11 @@ public class DummyMoviesService implements MoviesService{
     }
 
     @Override
+    public Movie findById(Long id) {
+        return moviesRepository.findOne(id);
+    }
+
+    @Override
     public List<Movie> findByTitle(String title) {
         return moviesRepository.findByTitleContainingIgnoreCase(title);
     }

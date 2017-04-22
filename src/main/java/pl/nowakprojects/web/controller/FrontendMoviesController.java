@@ -26,6 +26,7 @@ public class FrontendMoviesController {
         this.moviesService = moviesService;
     }
 
+    //TODO: Tak jak ustawianie atrybutu, to mozna ustawic w Form, model zamiast MovieForm
     @RequestMapping("/movies")
     String moviesList(@RequestParam(defaultValue = "") String title, Model model){
         List<Movie> movieListToShow;
@@ -45,7 +46,16 @@ public class FrontendMoviesController {
     }
 
     @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    String displayMovie(MovieForm movieForm){
+    String displayMovie(@PathVariable(name= "id", required = false) String movieId, MovieForm movieForm){
+        if(movieId!=null) {
+            Movie editedMovie = moviesService.findById(Long.parseLong(movieId));
+            movieForm.setId(editedMovie.getId());
+            movieForm.setTitle(editedMovie.getTitle());
+            movieForm.setDirector(editedMovie.getDirector());
+            movieForm.setGenre(editedMovie.getGenre());
+            movieForm.setLanguage(editedMovie.getLanguage());
+            movieForm.setReleaseYear(editedMovie.getReleaseYear());
+        }
         return "movieForm";
     }
 
@@ -56,8 +66,9 @@ public class FrontendMoviesController {
         else{
             moviesService.saveMovie(
                     new Movie(
+                            movieForm.getId(),
                             movieForm.getTitle(),
-                            null,
+                            movieForm.getGenre(),
                             movieForm.getDirector(),
                             movieForm.getLanguage(),
                             movieForm.getReleaseYear()
