@@ -46,15 +46,10 @@ public class FrontendMoviesController {
     }
 
     @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    String displayMovie(@PathVariable(name= "id", required = false) String movieId, MovieForm movieForm){
+    String displayMovie(@PathVariable(name= "id", required = false) String movieId, MovieForm movieForm, Model model){
         if(movieId!=null) {
             Movie editedMovie = moviesService.findById(Long.parseLong(movieId));
-            movieForm.setId(editedMovie.getId());
-            movieForm.setTitle(editedMovie.getTitle());
-            movieForm.setDirector(editedMovie.getDirector());
-            movieForm.setGenre(editedMovie.getGenre());
-            movieForm.setLanguage(editedMovie.getLanguage());
-            movieForm.setReleaseYear(editedMovie.getReleaseYear());
+            model.addAttribute("movie",editedMovie);
         }
         return "movieForm";
     }
