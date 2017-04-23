@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.nowakprojects.buisnesslogic.interfaces.MoviesService;
 import pl.nowakprojects.database.entity.Movie;
-import pl.nowakprojects.database.repository.MoviesRepository;
 import pl.nowakprojects.web.dto.MovieForm;
 
 import javax.validation.Valid;
@@ -32,7 +31,7 @@ public class FrontendMoviesController {
         List<Movie> movieListToShow;
 
         if(title.isEmpty())
-            movieListToShow = moviesService.getAllMovies();
+            movieListToShow = moviesService.findAll();
         else
             movieListToShow = moviesService.findByTitle(title);
 
@@ -46,11 +45,7 @@ public class FrontendMoviesController {
     }
 
     @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    String displayMovie(@PathVariable(name= "id", required = false) String movieId, MovieForm movieForm, Model model){
-        if(movieId!=null) {
-            Movie editedMovie = moviesService.findById(Long.parseLong(movieId));
-            model.addAttribute("movie",editedMovie);
-        }
+    String displayMovie(@PathVariable(name= "id", required = false) String movieId, MovieForm movieForm){
         return "movieForm";
     }
 
@@ -59,7 +54,7 @@ public class FrontendMoviesController {
         if(bindingResult.hasErrors())
             return "movieForm";
         else{
-            moviesService.saveMovie(
+            moviesService.create(
                     new Movie(
                             movieForm.getId(),
                             movieForm.getTitle(),

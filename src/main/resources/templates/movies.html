@@ -11,14 +11,14 @@ layout:decorator = "layout/default">
     <h2 class="indigo-text center" th:text="|Movies list:|">Movies</h2>
     <ul class="collection">
         <li class="collection-item movie" th:each="movie : ${movies}">
-            <h3 class="title" th:text="${movie.title}">Title</h3>
+            <span style="font-weight: bold" class="title" th:text="${movie.title}">Title</span>
             <span class="sub-title" th:text="${movie.genre}">Director</span>
             <span class="sub-title" th:text="${movie.director}">Director</span>
         </li>
 
     </ul>
 </div>
-<h1>Hello</h1>
+
 
 </div>
 

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pl.nowakprojects.buisnesslogic.interfaces.CustomersService;
 import pl.nowakprojects.database.entity.Customer;
-import pl.nowakprojects.database.entity.Movie;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class CustomersController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     ResponseEntity<List<Customer>> getAllCustomers(){
-        List<Customer> allCustomersList = customersService.getAllCustomers();
+        List<Customer> allCustomersList = customersService.findAll();
         HttpStatus httpStatus = allCustomersList.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return new ResponseEntity<>(allCustomersList, httpStatus);
     }

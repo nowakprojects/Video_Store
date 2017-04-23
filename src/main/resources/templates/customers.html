@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator = "layout/default">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+<div class="row" >
+    <h2 class="indigo-text center" th:text="|Customers data:|">Customers</h2>
+    <ul class="collection">
+        <li class="collection-item customer" th:each="customer : ${customers}">
+            <div>
+                <span style="font-weight: bold" th:text="${customer.surname}">Surname</span>
+                <span style="font-weight: bold" th:text="${customer.name}">Name</span>
+            </div>
+            <div>
+                <span th:text="${customer.email}">Email</span>
+                <span th:text="${customer.phone}">Phone</span>
+            </div>
+            <div class = "three columns">
+                <form th:action="@{/customer}" th:method="get">
+                    <input type="hidden" name="id" th:value="${customer.id}" />
+                    <button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">mode_edit</i>Edit</button>
+                </form>
+                <form th:action="@{/customer}" th:method="delete">
+                    <input type="hidden" name="id" th:value="${customer.id}" />
+                    <button class="waves-effect waves-light btn"><i class="material-icons left">delete</i>Delete</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+    <div id="newCustomerForm" style="visibility: hidden">
+        <span style="font-weight: bold">Surname</span>
+    </div>
+
+    <form method="get" th:action="@{/customer}">
+        <div class = "row s12">
+            <a id="addFab" class="btn-floating btn-large waves-effect waves-light red" type="submit" name="save"><i class="material-icons">add</i></a>
+        </div>
+    </form>
+
+</div>
+</div>
+
+</body>
+</html>

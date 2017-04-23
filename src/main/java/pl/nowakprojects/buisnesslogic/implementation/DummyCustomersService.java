@@ -2,10 +2,14 @@ package pl.nowakprojects.buisnesslogic.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+import pl.nowakprojects.buisnesslogic.exceptions.CustomerNotFoundException;
 import pl.nowakprojects.buisnesslogic.interfaces.CustomersService;
 import pl.nowakprojects.database.entity.Customer;
 import pl.nowakprojects.database.repository.CustomersRepository;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -22,16 +26,30 @@ public class DummyCustomersService implements CustomersService {
         populateDummyData();
     }
 
-    public List<Customer> getAllCustomers() {
+    public List<Customer> findAll() {
         return customersRepository.findAll();
     }
 
-    public Customer saveCustomer(Customer customer) {
-        return customersRepository.save(customer);
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public Customer save(Customer customer) {
+            return customersRepository.save(customer);
+    }
+
+    @Override
+    public void delete(Long id) {
+        customersRepository.delete(id);
+    }
+
+    @Override
+    public Customer findOne(Long id) {
+        if(id==null)
+            return null;
+
+        return customersRepository.findOne(id);
     }
 
     private void populateDummyData(){
-        saveCustomer(new Customer(
+        save(new Customer(
                 null,
                 "Jan",
                 "Kowalski",
@@ -42,7 +60,7 @@ public class DummyCustomersService implements CustomersService {
                 )
         );
 
-        saveCustomer(new Customer(
+        save(new Customer(
                         null,
                         "Jan",
                         "Kowalski",
@@ -53,7 +71,7 @@ public class DummyCustomersService implements CustomersService {
                 )
         );
 
-        saveCustomer(new Customer(
+        save(new Customer(
                         null,
                         "Anna",
                         "Nowak",
@@ -65,7 +83,7 @@ public class DummyCustomersService implements CustomersService {
         );
 
 
-        saveCustomer(new Customer(
+        save(new Customer(
                         null,
                         "Mateusz",
                         "Nowak",
@@ -77,7 +95,7 @@ public class DummyCustomersService implements CustomersService {
         );
 
 
-        saveCustomer(new Customer(
+        save(new Customer(
                         null,
                         "Zbigniew",
                         "Wójcik",
