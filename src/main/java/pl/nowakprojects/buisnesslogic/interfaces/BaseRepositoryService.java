@@ -12,6 +12,6 @@ import java.util.List;
 public interface BaseRepositoryService<T,ID> {
     List<T> findAll();
     T save(T entity);
-    void delete(ID id);
+    //void delete(ID id);
     T findOne(ID id);
 }

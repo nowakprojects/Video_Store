@@ -9,7 +9,9 @@ import java.util.List;
 /**
  * Created by Mateusz on 22.04.2017.
  */
-public interface RentalsService {
-    boolean addRental(Long customerId, Long movieId);
-    List<Rental> getAllRentals();
+public interface RentalsService extends BaseRepositoryService<Rental,Long> {
+    boolean rentVideo(Long customerId, Long movieId);
+    List<Movie> getAllAvailableMovies();
+    boolean isMovieAvailable(Long movieId);
+    List<Customer> getAllCustomers();
 }

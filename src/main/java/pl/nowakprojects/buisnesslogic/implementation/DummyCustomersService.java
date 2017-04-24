@@ -35,7 +35,7 @@ public class DummyCustomersService implements CustomersService {
             return customersRepository.save(customer);
     }
 
-    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void delete(Long id) {
         customersRepository.delete(id);
     }

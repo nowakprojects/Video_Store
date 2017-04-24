@@ -9,6 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -24,7 +25,7 @@ public class Rental {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Customer customer;
 
     @ManyToOne
@@ -32,9 +33,9 @@ public class Rental {
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
-    private LocalDate rentDate = LocalDate.now();
+    private LocalDateTime rentDate = LocalDateTime.now();
 
-    private LocalDate returnDate;
+    private LocalDateTime returnDate;
 
 
     public Rental(Customer customer, Movie movie) {

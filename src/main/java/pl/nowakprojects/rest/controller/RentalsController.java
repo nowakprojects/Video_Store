@@ -27,7 +27,7 @@ public class RentalsController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     ResponseEntity<List<Rental>> getAllRentals(){
-        List<Rental> allRentals = rentalsService.getAllRentals();
+        List<Rental> allRentals = rentalsService.findAll();
         HttpStatus httpStatus = allRentals.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return new ResponseEntity<>(allRentals, httpStatus);
     }

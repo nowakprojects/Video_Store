@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -20,22 +21,28 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty
     @Column(nullable = false)
     private String surname;
 
+    @NotEmpty
     @Column(nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @NotEmpty
+    @Column
     @Email
     private String email;
 
+    @NotEmpty
     @Column(nullable = false)
     private String phone;
 
+    @NotEmpty
     @Column(nullable = false)
     private String address;
 
+    @NotEmpty
     @Column(nullable = false)
     private String city;
 }

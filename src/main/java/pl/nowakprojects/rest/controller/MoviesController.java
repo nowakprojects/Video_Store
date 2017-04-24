@@ -30,7 +30,7 @@ public class MoviesController {
         return new ResponseEntity<>(allMoviesList, httpStatus);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     ResponseEntity<Movie> addMovie(@RequestBody Movie movie){
         return new ResponseEntity<>(moviesService.create(movie),HttpStatus.CREATED);
     }

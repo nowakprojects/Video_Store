@@ -26,18 +26,15 @@ layout:decorator = "layout/default">
                 </form>
                 <form th:action="@{/customer}" th:method="delete">
                     <input type="hidden" name="id" th:value="${customer.id}" />
-                    <button class="waves-effect waves-light btn"><i class="material-icons left">delete</i>Delete</button>
+                    <button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">delete</i>Delete</button>
                 </form>
             </div>
         </li>
     </ul>
-    <div id="newCustomerForm" style="visibility: hidden">
-        <span style="font-weight: bold">Surname</span>
-    </div>
 
     <form method="get" th:action="@{/customer}">
         <div class = "row s12">
-            <a id="addFab" class="btn-floating btn-large waves-effect waves-light red" type="submit" name="save"><i class="material-icons">add</i></a>
+            <button id="addFab" class="btn-floating btn-large waves-effect waves-light red" type="submit" name="save"><i class="material-icons">add</i></button>
         </div>
     </form>
 

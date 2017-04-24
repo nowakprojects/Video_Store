@@ -41,7 +41,7 @@ public class FrontendCustomersController {
         Customer customer = customersService.findOne(id);
         if(customer==null) {
             customer = new Customer();
-            customer.setId(customersService.findAll().size()+1L);
+           // customer.setId(customersService.findAll().size()+1L);
         }
 
         model.addAttribute("customer",customer);
@@ -50,7 +50,7 @@ public class FrontendCustomersController {
 
     @RequestMapping(value = "/customer", method = RequestMethod.DELETE)
     public String deleteCustomer(@RequestParam(value = "id") Long id){
-        customersService.delete(id);
+        //customersService.delete(id);
         return "redirect:/";
     }
 

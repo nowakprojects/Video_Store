@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator = "layout/default">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+<div class="row" >
+    <h2 class="indigo-text center" th:text="|Rental history:|">Rental list</h2>
+    <ul class="collection">
+        <li class="collection-item rental" th:each="rental : ${rental_list}">
+            <div>
+                <span style="font-weight: bold" th:text="${rental.rentDate}">Rent date</span>
+                <span th:text="${rental.movie}">Movie</span>
+            </div>
+            <div>
+                <span th:text="${rental.customer.name}">Name</span>
+                <span th:text="${rental.customer.surname}">Surname</span>
+                <span th:text="${rental.customer.email}">Email</span>
+            </div>
+            <div>
+                <span th:text="${rental.returnDate!=null ? rental.returnDate : ''}">Return Date</span>
+            </div>
+            <div class = "three columns">
+                <form >
+                    <input type="hidden" name="id" th:value="${rental.id}" />
+                    <button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">mode_edit</i>Edit</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <!--<form method="get" th:action="@{/customer}">
+        <div class = "row s12">
+            <button id="addFab" class="btn-floating btn-large waves-effect waves-light red" type="submit" name="save"><i class="material-icons">add</i></button>
+        </div>
+    </form>-->
+
+</div>
+</div>
+
+</body>
+</html>
