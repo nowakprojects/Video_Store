@@ -63,14 +63,14 @@ public class FrontendRentalsController {
     }
 
     @RequestMapping(value = "/rent", method = RequestMethod.POST)
-    public String customer(@Valid @ModelAttribute("newRental") Rental newRental, BindingResult bindingResult, Model model){
+    public String rent(@Valid @ModelAttribute("rental") Rental rental, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors())
-            return "rentalForm";
+            return "redirect:/";
         else{
-            rentalsService.save(newRental);
+            rentalsService.save(rental);
         }
 
-        return "redirect:/rental/all";
+        return "redirect:/history";
     }
 
 

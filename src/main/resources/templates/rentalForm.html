@@ -13,12 +13,11 @@
     <h2 class="indigo-text center">Rent a movie</h2>
     <form th:action="@{/rent}" th:object="${rental}" method="post" class="col m8 s12 offset-m2">
         <div class="row">
-            <!--<input type="hidden" name="id" th:value="${rental.id}" />-->
 
             <div class="input-field col s12">
-                <select class="form-control" id="select_movie" th:field="${rental.movie}">
+                <select class="form-control" id="movie" th:field="${rental.movie}">
                     <option th:each="movie : ${movies}"
-                            th:value = "${movie}"
+                            th:value = "${movie.id}"
                             th:text = "${movie.title.concat('   ').concat(movie.director)}">Movie option</option>
                 </select>
 
@@ -26,9 +25,9 @@
             </div>
 
             <div class="input-field col s12">
-                <select class="form-control" id="select_customer" th:field="${rental.customer}">
+                <select class="form-control" id="customer" th:field="${rental.customer}">
                     <option th:each="customer : ${customers}"
-                            th:value = "${customer}"
+                            th:value = "${customer.id}"
                             th:text = "${customer.surname.concat('   ').concat(customer.name).concat('  ').concat(customer.email)}">
                         Customer option</option>
                 </select>
