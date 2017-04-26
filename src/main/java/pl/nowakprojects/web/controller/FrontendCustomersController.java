@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.nowakprojects.buisnesslogic.interfaces.CustomersService;
 import pl.nowakprojects.database.entity.Customer;
+import pl.nowakprojects.database.entity.Genre;
 import pl.nowakprojects.database.entity.Movie;
 import pl.nowakprojects.database.repository.CustomersRepository;
 
@@ -41,7 +42,6 @@ public class FrontendCustomersController {
         Customer customer = customersService.findOne(id);
         if(customer==null) {
             customer = new Customer();
-           // customer.setId(customersService.findAll().size()+1L);
         }
 
         model.addAttribute("customer",customer);

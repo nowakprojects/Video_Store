@@ -11,6 +11,7 @@ import pl.nowakprojects.database.repository.MoviesRepository;
 import pl.nowakprojects.database.repository.RentalsRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -42,8 +43,8 @@ public class DummyRentalService implements RentalsService {
     }
 
     @Override
-    public Rental findOne(Long id) {
-        return rentalsRepository.findOne(id);
+    public Optional<Rental> findOne(Long id) {
+        return Optional.ofNullable(rentalsRepository.findOne(id));
     }
 
     @Override

@@ -11,6 +11,7 @@ import pl.nowakprojects.database.repository.CustomersRepository;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Mateusz on 22.04.2017.
@@ -41,11 +42,8 @@ public class DummyCustomersService implements CustomersService {
     }
 
     @Override
-    public Customer findOne(Long id) {
-        if(id==null)
-            return null;
-
-        return customersRepository.findOne(id);
+    public Optional<Customer> findOne(Long id) {
+        return Optional.ofNullable(customersRepository.findOne(id));
     }
 
     private void populateDummyData(){

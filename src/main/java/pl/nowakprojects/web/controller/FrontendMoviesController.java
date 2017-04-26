@@ -11,12 +11,15 @@ import pl.nowakprojects.web.dto.MovieForm;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Mateusz on 22.04.2017.
  */
 @Controller
 public class FrontendMoviesController {
+
+    private final static String ATTR_MOVIE = "attr_movie";
 
     private final MoviesService moviesService;
 
@@ -27,7 +30,7 @@ public class FrontendMoviesController {
 
     //TODO: Tak jak ustawianie atrybutu, to mozna ustawic w Form, model zamiast MovieForm
     @RequestMapping("/movies")
-    String moviesList(@RequestParam(defaultValue = "") String title, Model model){
+    String movies(@RequestParam(defaultValue = "") String title, Model model){
         List<Movie> movieListToShow;
 
         if(title.isEmpty())
@@ -45,7 +48,11 @@ public class FrontendMoviesController {
     }
 
     @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    String displayMovie(@PathVariable(name= "id", required = false) String movieId, MovieForm movieForm){
+    String movieForm(@PathVariable(name= "id", required = false) Long movieId, Model model){
+        Optional<Movie> movie = moviesService.findOne(movieId);
+
+        model.addAttribute(ATTR_MOVIE,movie.orElse(new Movie()));
+
         return "movieForm";
     }
 
@@ -54,7 +61,7 @@ public class FrontendMoviesController {
         if(bindingResult.hasErrors())
             return "movieForm";
         else{
-            moviesService.create(
+            moviesService.save(
                     new Movie(
                             movieForm.getId(),
                             movieForm.getTitle(),

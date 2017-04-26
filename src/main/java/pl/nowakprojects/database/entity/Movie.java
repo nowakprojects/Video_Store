@@ -1,8 +1,11 @@
 package pl.nowakprojects.database.entity;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.time.Year;
 
 /**
@@ -14,10 +17,13 @@ import java.time.Year;
 @NoArgsConstructor
 public class Movie {
 
+    private static final int MIN_RELEASE_YEAR = 1895;
+
     @Id
     @GeneratedValue
     private Long id;
 
+    @NotEmpty
     @Column(nullable = false)
     private String title;
 
@@ -28,6 +34,8 @@ public class Movie {
 
     private String language;
 
+    @Min(MIN_RELEASE_YEAR)
+    @Length(min=4,max = 4)
     private String releaseYear;
 
     public Movie(String title, Genre genre, String director, String language, String releaseYear) {
