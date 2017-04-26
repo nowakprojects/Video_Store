@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.nowakprojects.buisnesslogic.interfaces.MoviesService;
+import pl.nowakprojects.database.entity.Customer;
+import pl.nowakprojects.database.entity.Genre;
 import pl.nowakprojects.database.entity.Movie;
-import pl.nowakprojects.web.dto.MovieForm;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by Mateusz on 22.04.2017.
@@ -19,7 +19,9 @@ import java.util.Optional;
 @Controller
 public class FrontendMoviesController {
 
-    private final static String ATTR_MOVIE = "attr_movie";
+    private final static String ATTR_MOVIE = "movie";
+    private static final String ATTR_MOVIES_LIST = "moviesList";
+    private static final String ATTR_GENRES_LIST = "genresList";
 
     private final MoviesService moviesService;
 
@@ -30,49 +32,35 @@ public class FrontendMoviesController {
 
     //TODO: Tak jak ustawianie atrybutu, to mozna ustawic w Form, model zamiast MovieForm
     @RequestMapping("/movies")
-    String movies(@RequestParam(defaultValue = "") String title, Model model){
-        List<Movie> movieListToShow;
+    String showMoviesListPage(@RequestParam(defaultValue = "") String title, Model model){
 
-        if(title.isEmpty())
-            movieListToShow = moviesService.findAll();
-        else
-            movieListToShow = moviesService.findByTitle(title);
+        model.addAttribute(
+                ATTR_MOVIES_LIST,
+                title.isEmpty() ? moviesService.findAll() : moviesService.findByTitle(title)
+        );
 
-        model.addAttribute("movies", movieListToShow);
         return "movies";
     }
 
     @RequestMapping("/search")
-    String search(Model model){
+    String showMoviesSearchPage(Model model){
         return "searchPage";
     }
 
     @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    String movieForm(@PathVariable(name= "id", required = false) Long movieId, Model model){
-        Optional<Movie> movie = moviesService.findOne(movieId);
-
-        model.addAttribute(ATTR_MOVIE,movie.orElse(new Movie()));
-
+    String movieForm(@PathVariable(name= "id", required = false) Long id, Model model){
+        Movie currentMovie = moviesService.findOne(id).orElse(new Movie());
+        model.addAttribute(ATTR_MOVIE,currentMovie);
+        model.addAttribute(ATTR_GENRES_LIST, Genre.values());
         return "movieForm";
     }
 
     @RequestMapping(value = "/movie", method = RequestMethod.POST)
-    String saveMovie(@Valid MovieForm movieForm, BindingResult bindingResult){
+    String saveMovieForm(@Valid @ModelAttribute("movie") Movie currentMovie, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return "movieForm";
-        else{
-            moviesService.save(
-                    new Movie(
-                            movieForm.getId(),
-                            movieForm.getTitle(),
-                            movieForm.getGenre(),
-                            movieForm.getDirector(),
-                            movieForm.getLanguage(),
-                            movieForm.getReleaseYear()
-                    )
-            );
-        }
 
+        moviesService.save(currentMovie);
         return "redirect:/movie";
     }
 

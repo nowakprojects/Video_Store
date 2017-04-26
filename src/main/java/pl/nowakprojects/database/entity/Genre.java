@@ -32,15 +32,19 @@ public enum Genre {
         this.name = name;
     }
 
-    private static List<String> getNames(){
+    public String getName() {
+        return name;
+    }
+
+    public static List<String> getNames(){
         return Arrays.stream(Genre.values()).map(g -> g.name).collect(Collectors.toList());
     }
 
-    private static Genre findByName(String name){
+    public static Genre findByName(String name){
         return Genre.valueOf(name);
     }
 
-    private static Genre findByIndex(int index){
+    public static Genre findByIndex(int index){
         return Genre.values()[index];
     }
 }

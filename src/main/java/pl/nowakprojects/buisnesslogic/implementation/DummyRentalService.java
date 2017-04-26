@@ -44,14 +44,14 @@ public class DummyRentalService implements RentalsService {
 
     @Override
     public Optional<Rental> findOne(Long id) {
-        return Optional.ofNullable(rentalsRepository.findOne(id));
+        return id==null ? Optional.empty() : Optional.ofNullable(rentalsRepository.findOne(id));
     }
 
     @Override
     public boolean rentVideo(Long customerId, Long movieId) {
         boolean availableToRent = isMovieAvailable(movieId);
 
-        if(availableToRent)
+        if (availableToRent)
             rentalsRepository.save(new Rental(customersRepository.findOne(customerId), moviesRepository.findOne(movieId)));
 
         return availableToRent;
@@ -62,15 +62,15 @@ public class DummyRentalService implements RentalsService {
         return getAllAvailableMovies().contains(moviesRepository.findOne(movieId));
     }
 
-    public List<Movie> getAllAvailableMovies(){
+    public List<Movie> getAllAvailableMovies() {
         List<Movie> alreadyRentedMovies =
                 rentalsRepository.findByReturnDateIsNull().stream()
-                        .map(Rental::getMovie).collect(Collectors.toList());
+                        .map(Rental::getMovie)
+                        .collect(Collectors.toList());
 
-        List<Movie> result = moviesRepository.findAll().stream()
-                .filter(movie -> !alreadyRentedMovies.contains(movie)).collect(Collectors.toList());
-
-        return result;
+        return moviesRepository.findAll().stream()
+                .filter(movie -> !alreadyRentedMovies.contains(movie))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -78,10 +78,10 @@ public class DummyRentalService implements RentalsService {
         return customersRepository.findAll();
     }
 
-    private void populateDummyData(){
-        rentVideo(1L,1L);
-        rentVideo(2L,2L);
-        rentVideo(3L,3L);
-        rentVideo(3L,4L);
+    private void populateDummyData() {
+        rentVideo(1L, 1L);
+        rentVideo(2L, 2L);
+        rentVideo(3L, 3L);
+        rentVideo(3L, 4L);
     }
 }

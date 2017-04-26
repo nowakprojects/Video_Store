@@ -43,7 +43,7 @@ public class DummyCustomersService implements CustomersService {
 
     @Override
     public Optional<Customer> findOne(Long id) {
-        return Optional.ofNullable(customersRepository.findOne(id));
+        return id==null ? Optional.empty() : Optional.ofNullable(customersRepository.findOne(id));
     }
 
     private void populateDummyData(){

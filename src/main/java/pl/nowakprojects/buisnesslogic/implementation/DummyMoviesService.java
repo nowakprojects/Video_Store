@@ -34,7 +34,7 @@ public class DummyMoviesService implements MoviesService{
 
     @Override
     public Optional<Movie> findOne(Long id) {
-        return Optional.ofNullable(moviesRepository.findOne(id));
+        return id==null ? Optional.empty() : Optional.ofNullable(moviesRepository.findOne(id));
     }
 
     @Override
@@ -43,6 +43,14 @@ public class DummyMoviesService implements MoviesService{
     }
 
     private void populateDummyData(){
+        save(new Movie(null,"Star Wars I", Genre.SCIENCE_FICTION,"George Lucas","English",1999));
+        save(new Movie(null,"Star Wars II",Genre.SCIENCE_FICTION,"George Lucas","English",2002));
+        save(new Movie(null,"Star Wars III",Genre.SCIENCE_FICTION,"George Lucas","English",2005));
+        save(new Movie(null,"Star Wars IV",Genre.SCIENCE_FICTION,"George Lucas","English",1977));
+        save(new Movie(null,"Star Wars V",Genre.SCIENCE_FICTION,"George Lucas","English",1980));
+        save(new Movie(null,"Star Wars VI",Genre.SCIENCE_FICTION,"George Lucas","English",1983));
+        save(new Movie(null,"Titanic",Genre.DRAMA,"James Cameron","English",1997));
+        /*
         save(new Movie(null,"Star Wars I", Genre.SCIENCE_FICTION,"George Lucas","English","1999"));
         save(new Movie(null,"Star Wars II",Genre.SCIENCE_FICTION,"George Lucas","English","2002"));
         save(new Movie(null,"Star Wars III",Genre.SCIENCE_FICTION,"George Lucas","English","2005"));
@@ -50,6 +58,6 @@ public class DummyMoviesService implements MoviesService{
         save(new Movie(null,"Star Wars V",Genre.SCIENCE_FICTION,"George Lucas","English","1980"));
         save(new Movie(null,"Star Wars VI",Genre.SCIENCE_FICTION,"George Lucas","English","1983"));
         save(new Movie(null,"Titanic",Genre.DRAMA,"James Cameron","English","1997"));
-
+*/
     }
 }

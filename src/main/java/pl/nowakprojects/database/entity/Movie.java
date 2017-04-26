@@ -3,9 +3,14 @@ package pl.nowakprojects.database.entity;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+import pl.nowakprojects.database.Restriction;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.Year;
 
 /**
@@ -17,14 +22,13 @@ import java.time.Year;
 @NoArgsConstructor
 public class Movie {
 
-    private static final int MIN_RELEASE_YEAR = 1895;
-
     @Id
     @GeneratedValue
     private Long id;
 
-    @NotEmpty
+    @NotNull
     @Column(nullable = false)
+    @Length(min = 3, max = 128)
     private String title;
 
     @Enumerated(EnumType.STRING)
@@ -34,11 +38,10 @@ public class Movie {
 
     private String language;
 
-    @Min(MIN_RELEASE_YEAR)
-    @Length(min=4,max = 4)
-    private String releaseYear;
+    @Min(Restriction.MOVIE_MIN_RELEASE_YEAR)
+    private Integer releaseYear;
 
-    public Movie(String title, Genre genre, String director, String language, String releaseYear) {
+    public Movie(String title, Genre genre, String director, String language, Integer releaseYear) {
         this.title = title;
         this.genre = genre;
         this.director = director;

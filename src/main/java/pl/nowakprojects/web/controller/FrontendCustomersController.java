@@ -22,7 +22,8 @@ import javax.validation.Valid;
 @Controller
 public class FrontendCustomersController {
 
-    private static final String ATTR_CUSTOMERS = "customers";
+    private static final String ATTR_CUSTOMER = "customer";
+    private static final String ATTR_CUSTOMERS_LIST = "customers";
 
     private CustomersService customersService;
 
@@ -31,37 +32,30 @@ public class FrontendCustomersController {
         this.customersService = customersService;
     }
 
-    @RequestMapping(value = "/customers",method = RequestMethod.GET)
-    public String customers(Model model){
-        model.addAttribute(ATTR_CUSTOMERS,customersService.findAll());
+    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    public String showCustomersList(Model model) {
+        model.addAttribute(ATTR_CUSTOMERS_LIST, customersService.findAll());
         return "customers";
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
-    public String customerForm(@RequestParam(value = "id", required = false) Long id, Model model){
-        Customer customer = customersService.findOne(id);
-        if(customer==null) {
-            customer = new Customer();
-        }
+    public String showCustomerForm(@RequestParam(value = "id", required = false) Long id, Model model) {
+        Customer currentCustomer = customersService.findOne(id).orElse(new Customer());
 
-        model.addAttribute("customer",customer);
+        model.addAttribute(ATTR_CUSTOMER, currentCustomer);
+
         return "customerForm";
     }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.DELETE)
-    public String deleteCustomer(@RequestParam(value = "id") Long id){
-        //customersService.delete(id);
-        return "redirect:/";
-    }
-
     @RequestMapping(value = "/customer", method = RequestMethod.POST)
-    public String customer(@Valid @ModelAttribute("newCustomer") Customer newCustomer, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors())
+    public String submitCustomer(
+            @Valid @ModelAttribute("customer") Customer currentCustomer,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors())
             return "customerForm";
-        else{
-            customersService.save(newCustomer);
-        }
 
+        customersService.save(currentCustomer);
         return "redirect:/customers";
     }
 

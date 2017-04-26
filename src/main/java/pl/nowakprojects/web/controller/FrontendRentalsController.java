@@ -46,19 +46,12 @@ public class FrontendRentalsController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String rentalForm(@RequestParam(value = "id", required = false) Long id, Model model){
-        Rental rental = null;
+        Rental currentRental = rentalsService.findOne(id).orElse(new Rental());
 
-        if(id!=null){
-            rental = rentalsService.findOne(id);
-        }
-
-        if(rental==null) {
-            rental = new Rental();
-        }
-
-        model.addAttribute(ATTR_RENTAL,rental);
+        model.addAttribute(ATTR_RENTAL,currentRental);
         model.addAttribute(ATTR_MOVIES,rentalsService.getAllAvailableMovies());
         model.addAttribute(ATTR_CUSTOMERS, rentalsService.getAllCustomers());
+
         return "rentalForm";
     }
 

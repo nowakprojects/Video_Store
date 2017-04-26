@@ -10,9 +10,9 @@ layout:decorator = "layout/default">
 <div class="row">
     <h2 class="indigo-text center" th:text="|Movies list:|">Movies</h2>
     <ul class="collection">
-        <li class="collection-item movie" th:each="movie : ${movies}">
+        <li class="collection-item movie" th:each="movie : ${moviesList}">
             <span style="font-weight: bold" class="title" th:text="${movie.title}">Title</span>
-            <span class="sub-title" th:text="${movie.genre}">Director</span>
+            <span class="sub-title" th:text="${movie.genre.name}">Genre</span>
             <span class="sub-title" th:text="${movie.director}">Director</span>
 
         </li>
