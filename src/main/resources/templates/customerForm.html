@@ -13,7 +13,7 @@
         <div class="row">
             <input type="hidden" name="id" th:value="${customer.id}"/>
             <div class="input-field col s6">
-                <input th:field="${customer.surname}" id="surname" type="text" onkeyup="showAlert()"/>
+                <input th:field="${customer.surname}" id="surname" type="text"/>
                 <label for="surname">Surname</label>
             </div>
             <div class="input-field col s6">
@@ -43,7 +43,7 @@
         </div>
 
         <div class = "row s12">
-            <button class="btn waves-effect waves-light" type="submit" name="save">
+            <button class="btn waves-effect waves-light" type="submit" name="save" onclick="showAlert()">
                 Save
                 <i class="mdi-content-send right"></i>
             </button>
