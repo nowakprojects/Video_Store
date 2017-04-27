@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.nowakprojects.buisnesslogic.interfaces.RentalsService;
-import pl.nowakprojects.database.entity.Customer;
+import pl.nowakprojects.buisnesslogic.interfaces.RentalService;
 import pl.nowakprojects.database.entity.Rental;
 
 import javax.validation.Valid;
@@ -26,11 +25,11 @@ public class FrontendRentalsController {
     private static final String ATTR_MOVIES = "movies";
     private static final String ATTR_CUSTOMERS = "customers";
 
-    private final RentalsService rentalsService;
+    private final RentalService rentalService;
 
     @Autowired
-    public FrontendRentalsController(RentalsService rentalsService) {
-        this.rentalsService = rentalsService;
+    public FrontendRentalsController(RentalService rentalService) {
+        this.rentalService = rentalService;
     }
 
     @RequestMapping("/")
@@ -40,17 +39,17 @@ public class FrontendRentalsController {
 
     @RequestMapping(value = "/history",method = RequestMethod.GET)
     public String allRentalList(Model model){
-        model.addAttribute(ATTR_RENTAL_LIST,rentalsService.findAll());
+        model.addAttribute(ATTR_RENTAL_LIST, rentalService.findAll());
         return "rentalList";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String rentalForm(@RequestParam(value = "id", required = false) Long id, Model model){
-        Rental currentRental = rentalsService.findOne(id).orElse(new Rental());
+        Rental currentRental = rentalService.findOne(id).orElse(new Rental());
 
         model.addAttribute(ATTR_RENTAL,currentRental);
-        model.addAttribute(ATTR_MOVIES,rentalsService.getAllAvailableMovies());
-        model.addAttribute(ATTR_CUSTOMERS, rentalsService.getAllCustomers());
+        model.addAttribute(ATTR_MOVIES, rentalService.getAllAvailableMovies());
+        model.addAttribute(ATTR_CUSTOMERS, rentalService.getAllCustomers());
 
         return "rentalForm";
     }
@@ -60,7 +59,7 @@ public class FrontendRentalsController {
         if(bindingResult.hasErrors())
             return "redirect:/";
         else{
-            rentalsService.save(rental);
+            rentalService.save(rental);
         }
 
         return "redirect:/history";

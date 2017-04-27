@@ -41,6 +41,7 @@ public class Movie {
     private String language;
 
     @Min(Restriction.MOVIE_MIN_RELEASE_YEAR)
+    @Column(name = "release_year")
     private Integer releaseYear;
 
     public Movie(String title, Genre genre, String director, String language, Integer releaseYear) {

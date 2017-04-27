@@ -2,7 +2,7 @@ package pl.nowakprojects.buisnesslogic.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.nowakprojects.buisnesslogic.interfaces.RentalsService;
+import pl.nowakprojects.buisnesslogic.interfaces.RentalService;
 import pl.nowakprojects.database.entity.Customer;
 import pl.nowakprojects.database.entity.Movie;
 import pl.nowakprojects.database.entity.Rental;
@@ -18,18 +18,17 @@ import java.util.stream.Collectors;
  * Created by Mateusz on 22.04.2017.
  */
 @Service
-public class DummyRentalService implements RentalsService {
+public class RentalServiceImpl implements RentalService {
 
     private final RentalsRepository rentalsRepository;
     private final CustomersRepository customersRepository;
     private final MoviesRepository moviesRepository;
 
     @Autowired
-    public DummyRentalService(RentalsRepository rentalsRepository, CustomersRepository customersRepository, MoviesRepository moviesRepository) {
+    public RentalServiceImpl(RentalsRepository rentalsRepository, CustomersRepository customersRepository, MoviesRepository moviesRepository) {
         this.rentalsRepository = rentalsRepository;
         this.customersRepository = customersRepository;
         this.moviesRepository = moviesRepository;
-        populateDummyData();
     }
 
     @Override
@@ -78,10 +77,4 @@ public class DummyRentalService implements RentalsService {
         return customersRepository.findAll();
     }
 
-    private void populateDummyData() {
-      /*  rentVideo(1L, 1L);
-        rentVideo(2L, 2L);
-        rentVideo(3L, 3L);
-        rentVideo(3L, 4L);*/
-    }
 }

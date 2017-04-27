@@ -30,13 +30,15 @@ public class Rental {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "customer")
     private Customer customer;
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "movie")
     private Movie movie;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "rent_date", updatable = false)
     @CreatedDate
     private LocalDateTime rentDate = LocalDateTime.now();
 
