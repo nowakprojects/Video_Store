@@ -20,6 +20,7 @@ import java.time.Year;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "movie")
 public class Movie {
 
     @Id
@@ -31,6 +32,7 @@ public class Movie {
     @Length(min = 3, max = 128)
     private String title;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Genre genre;
 

@@ -21,6 +21,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "rental")
 public class Rental {
 
     @Id

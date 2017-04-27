@@ -47,7 +47,7 @@ public class DummyCustomersService implements CustomersService {
     }
 
     private void populateDummyData(){
-        save(new Customer(
+       /* save(new Customer(
                 null,
                 "Jan",
                 "Kowalski",
@@ -102,6 +102,6 @@ public class DummyCustomersService implements CustomersService {
                         "st. AStreet 10/4",
                         "City 12"
                 )
-        );
+        );*/
     }
 }

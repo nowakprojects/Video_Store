@@ -79,9 +79,9 @@ public class DummyRentalService implements RentalsService {
     }
 
     private void populateDummyData() {
-        rentVideo(1L, 1L);
+      /*  rentVideo(1L, 1L);
         rentVideo(2L, 2L);
         rentVideo(3L, 3L);
-        rentVideo(3L, 4L);
+        rentVideo(3L, 4L);*/
     }
 }

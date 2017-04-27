@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "customer")
 public class Customer {
 
     @Id
