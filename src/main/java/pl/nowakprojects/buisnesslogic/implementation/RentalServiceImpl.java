@@ -2,6 +2,7 @@ package pl.nowakprojects.buisnesslogic.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.nowakprojects.buisnesslogic.interfaces.RentalService;
 import pl.nowakprojects.database.entity.Customer;
 import pl.nowakprojects.database.entity.Movie;
@@ -31,6 +32,7 @@ public class RentalServiceImpl implements RentalService {
         this.moviesRepository = moviesRepository;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Rental> findAll() {
         return rentalsRepository.findAll();
@@ -41,6 +43,7 @@ public class RentalServiceImpl implements RentalService {
         return rentalsRepository.save(entity);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Rental> findOne(Long id) {
         return id==null ? Optional.empty() : Optional.ofNullable(rentalsRepository.findOne(id));
@@ -56,6 +59,7 @@ public class RentalServiceImpl implements RentalService {
         return availableToRent;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public boolean isMovieAvailable(Long movieId) {
         return getAllAvailableMovies().contains(moviesRepository.findOne(movieId));
@@ -72,6 +76,7 @@ public class RentalServiceImpl implements RentalService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Customer> getAllCustomers() {
         return customersRepository.findAll();

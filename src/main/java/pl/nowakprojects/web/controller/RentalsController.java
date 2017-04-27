@@ -1,6 +1,7 @@
 package pl.nowakprojects.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,8 +18,7 @@ import javax.validation.Valid;
  * Created by Mateusz on 24.04.2017.
  */
 @Controller
-//rental/all
-public class FrontendRentalsController {
+public class RentalsController {
 
     private static final String ATTR_RENTAL = "rental";
     private static final String ATTR_RENTAL_LIST = "rental_list";
@@ -28,7 +28,7 @@ public class FrontendRentalsController {
     private final RentalService rentalService;
 
     @Autowired
-    public FrontendRentalsController(RentalService rentalService) {
+    public RentalsController(RentalService rentalService) {
         this.rentalService = rentalService;
     }
 

@@ -1,6 +1,7 @@
 package pl.nowakprojects.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +21,7 @@ import javax.validation.Valid;
  * Created by Mateusz on 23.04.2017.
  */
 @Controller
-public class FrontendCustomersController {
+public class CustomersController {
 
     private static final String ATTR_CUSTOMER = "customer";
     private static final String ATTR_CUSTOMERS_LIST = "customers";
@@ -28,7 +29,7 @@ public class FrontendCustomersController {
     private CustomersService customersService;
 
     @Autowired
-    public FrontendCustomersController(CustomersService customersService) {
+    public CustomersController(CustomersService customersService) {
         this.customersService = customersService;
     }
 
@@ -40,7 +41,7 @@ public class FrontendCustomersController {
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public String showCustomerForm(@RequestParam(value = "id", required = false) Long id, Model model) {
-        Customer currentCustomer = customersService.findOne(id).orElse(new Customer());
+        Customer currentCustomer = customersService.findOne(id).orElseGet(() -> new Customer());
 
         model.addAttribute(ATTR_CUSTOMER, currentCustomer);
 

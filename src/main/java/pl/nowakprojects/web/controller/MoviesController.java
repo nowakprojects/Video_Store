@@ -1,6 +1,7 @@
 package pl.nowakprojects.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by Mateusz on 22.04.2017.
  */
 @Controller
-public class FrontendMoviesController {
+public class MoviesController {
 
     private final static String ATTR_MOVIE = "movie";
     private static final String ATTR_MOVIES_LIST = "moviesList";
@@ -26,7 +27,7 @@ public class FrontendMoviesController {
     private final MoviesService moviesService;
 
     @Autowired
-    public FrontendMoviesController(MoviesService moviesService) {
+    public MoviesController(MoviesService moviesService) {
         this.moviesService = moviesService;
     }
 

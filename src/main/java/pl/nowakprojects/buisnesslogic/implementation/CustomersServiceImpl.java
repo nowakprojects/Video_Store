@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-import pl.nowakprojects.buisnesslogic.exceptions.CustomerNotFoundException;
 import pl.nowakprojects.buisnesslogic.interfaces.CustomersService;
 import pl.nowakprojects.database.entity.Customer;
 import pl.nowakprojects.database.repository.CustomersRepository;
@@ -26,6 +25,7 @@ public class CustomersServiceImpl implements CustomersService {
         this.customersRepository = customersRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<Customer> findAll() {
         return customersRepository.findAll();
     }
@@ -35,6 +35,7 @@ public class CustomersServiceImpl implements CustomersService {
         return customersRepository.save(customer);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Customer> findOne(Long id) {
         return id == null ? Optional.empty() : Optional.ofNullable(customersRepository.findOne(id));
