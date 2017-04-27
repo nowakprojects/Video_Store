@@ -3,9 +3,9 @@ package pl.nowakprojects.service.implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.nowakprojects.service.interfaces.MoviesService;
 import pl.nowakprojects.domain.entity.Movie;
-import pl.nowakprojects.domain.repository.MoviesRepository;
+import pl.nowakprojects.domain.repository.MovieRepository;
+import pl.nowakprojects.service.interfaces.MovieService;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,35 +14,35 @@ import java.util.Optional;
  * Created by Mateusz on 22.04.2017.
  */
 @Service
-public class MoviesServiceImpl implements MoviesService{
+public class MovieServiceImpl implements MovieService {
 
-    private final MoviesRepository moviesRepository;
+    private final MovieRepository movieRepository;
 
     @Autowired
-    MoviesServiceImpl(MoviesRepository moviesRepository){
-        this.moviesRepository = moviesRepository;
+    MovieServiceImpl(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
     }
 
     @Transactional(readOnly = true)
     public List<Movie> findAll() {
-        return moviesRepository.findAll();
+        return movieRepository.findAll();
     }
 
     @Transactional
     public Movie save(Movie movie) {
-        return moviesRepository.save(movie);
+        return movieRepository.save(movie);
     }
 
     @Transactional(readOnly = true)
     @Override
     public Optional<Movie> findOne(Long id) {
-        return id==null ? Optional.empty() : Optional.ofNullable(moviesRepository.findOne(id));
+        return id == null ? Optional.empty() : Optional.ofNullable(movieRepository.findOne(id));
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<Movie> findByTitle(String title) {
-        return moviesRepository.findByTitleContainingIgnoreCase(title);
+        return movieRepository.findByTitleContainingIgnoreCase(title);
     }
 
 }

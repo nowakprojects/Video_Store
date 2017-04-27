@@ -8,6 +8,6 @@ import java.util.List;
 /**
  * Created by Mateusz on 22.04.2017.
  */
-public interface MoviesRepository extends JpaRepository<Movie,Long>{
+public interface MovieRepository extends JpaRepository<Movie, Long> {
     List<Movie> findByTitleContainingIgnoreCase(String title);
 }

@@ -17,7 +17,7 @@
                 <label for="title">Title</label>
                 <div th:errors="*{title}" class="red-text">Error</div>
             </div>
-            <div class="input-field col s12">
+            <div class="input-field col s6">
                 <select class="form-control" id="movie_genre" th:field="${movie.genre}">
                     <option th:each="genreItem : ${genresList}"
                             th:value = "${genreItem}"

@@ -5,11 +5,12 @@ import pl.nowakprojects.domain.entity.Rental;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Mateusz on 22.04.2017.
  */
-public interface RentalsRepository extends JpaRepository<Rental,Long> {
+public interface RentalRepository extends JpaRepository<Rental, Long> {
     List<Rental> findByMovieId(Long movieId);
     List<Rental> findByCustomerIdAndMovieId(Long customerId, Long movieId);
     List<Rental> findByCustomerId(Long customerId);
@@ -18,4 +19,6 @@ public interface RentalsRepository extends JpaRepository<Rental,Long> {
     List<Rental> findByRentDateBefore(Date endDate);
     List<Rental> findByReturnDateIsNull();
     List<Rental> findByReturnDateIsNotNull();
+
+    Optional<Rental> findFirstByMovieIdAndReturnDateIsNull(Long movieId);
 }

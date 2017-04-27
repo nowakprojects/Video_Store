@@ -6,5 +6,5 @@ import pl.nowakprojects.domain.entity.Customer;
 /**
  * Created by Mateusz on 22.04.2017.
  */
-public interface CustomersRepository extends JpaRepository<Customer,Long>{
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }

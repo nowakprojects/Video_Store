@@ -10,16 +10,18 @@ layout:decorator = "layout/default">
 <div class="row" >
     <h2 class="indigo-text center" th:text="|Customers data:|">Customers</h2>
     <ul class="collection">
-        <li class="collection-item customer" th:each="customer : ${customers}">
-            <div>
+        <li class="row collection-item customer" th:each="customer : ${customers}">
+            <div class="col s2">
                 <span style="font-weight: bold" th:text="${customer.surname}">Surname</span>
                 <span style="font-weight: bold" th:text="${customer.name}">Name</span>
             </div>
-            <div>
-                <span th:text="${customer.email}">Email</span>
-                <span th:text="${customer.phone}">Phone</span>
+            <div class="col s3">
+                <span th:text="${'E-mail: '.concat(customer.email)}">Email</span>
             </div>
-            <div class = "three columns">
+            <div class="col s3">
+                <span th:text="${'Phone number: '.concat(customer.phone)}">Phone</span>
+            </div>
+            <div class="col s4">
                 <form th:action="@{/customer}" th:method="get">
                     <input type="hidden" name="id" th:value="${customer.id}" />
                     <button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">mode_edit</i>Edit</button>

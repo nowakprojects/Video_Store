@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import pl.nowakprojects.service.interfaces.CustomersService;
+import org.springframework.web.bind.annotation.*;
+import pl.nowakprojects.service.interfaces.CustomerService;
 import pl.nowakprojects.domain.entity.Customer;
 
 import javax.validation.Valid;
@@ -17,42 +14,43 @@ import javax.validation.Valid;
  * Created by Mateusz on 23.04.2017.
  */
 @Controller
-public class CustomersController {
+public class CustomerController {
 
     private static final String ATTR_CUSTOMER = "customer";
     private static final String ATTR_CUSTOMERS_LIST = "customers";
 
-    private CustomersService customersService;
+    private CustomerService customerService;
 
     @Autowired
-    public CustomersController(CustomersService customersService) {
-        this.customersService = customersService;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
-    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    @GetMapping("/customers")
     public String showCustomersList(Model model) {
-        model.addAttribute(ATTR_CUSTOMERS_LIST, customersService.findAll());
+        model.addAttribute(ATTR_CUSTOMERS_LIST, customerService.findAll());
         return "customers";
     }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.GET)
+    @GetMapping("/customer")
     public String showCustomerForm(@RequestParam(value = "id", required = false) Long id, Model model) {
-        Customer currentCustomer = customersService.findOne(id).orElseGet(Customer::new);
+        Customer currentCustomer = customerService.findOne(id).orElseGet(Customer::new);
 
         model.addAttribute(ATTR_CUSTOMER, currentCustomer);
 
         return "customerForm";
     }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.POST)
+    @PostMapping("/customer")
     public String submitCustomer(
             @Valid @ModelAttribute("customer") Customer currentCustomer,
-            BindingResult bindingResult
+            BindingResult bindingResult,
+            Model model
     ) {
         if (bindingResult.hasErrors())
             return "customerForm";
 
-        customersService.save(currentCustomer);
+        customerService.save(currentCustomer);
         return "redirect:/customers";
     }
 

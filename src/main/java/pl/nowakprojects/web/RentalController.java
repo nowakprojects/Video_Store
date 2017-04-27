@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.nowakprojects.service.interfaces.RentalService;
 import pl.nowakprojects.domain.entity.Rental;
 
@@ -17,7 +14,7 @@ import javax.validation.Valid;
  * Created by Mateusz on 24.04.2017.
  */
 @Controller
-public class RentalsController {
+public class RentalController {
 
     private static final String ATTR_RENTAL = "rental";
     private static final String ATTR_RENTAL_LIST = "rental_list";
@@ -27,22 +24,22 @@ public class RentalsController {
     private final RentalService rentalService;
 
     @Autowired
-    public RentalsController(RentalService rentalService) {
+    public RentalController(RentalService rentalService) {
         this.rentalService = rentalService;
     }
 
-    @RequestMapping("/")
+    /*@RequestMapping("/")
     public String index(){
         return "rentalForm";
     }
-
-    @RequestMapping(value = "/history",method = RequestMethod.GET)
+    */
+    @GetMapping("/history")
     public String allRentalList(Model model){
         model.addAttribute(ATTR_RENTAL_LIST, rentalService.findAll());
         return "rentalList";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
     public String rentalForm(@RequestParam(value = "id", required = false) Long id, Model model){
         Rental currentRental = rentalService.findOne(id).orElseGet(Rental::new);
 
@@ -53,7 +50,7 @@ public class RentalsController {
         return "rentalForm";
     }
 
-    @RequestMapping(value = "/rent", method = RequestMethod.POST)
+    @PostMapping("/rent")
     public String rent(@Valid @ModelAttribute("rental") Rental rental, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors())
             return "redirect:/";
@@ -64,5 +61,11 @@ public class RentalsController {
         return "redirect:/history";
     }
 
+
+    @PutMapping("/return")
+    public String returnMovie(@RequestParam(value = "id") Long rentalId) {
+        rentalService.returnMovie(rentalId);
+        return "redirect:/history";
+    }
 
 }

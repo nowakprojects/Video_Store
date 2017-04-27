@@ -1,5 +1,7 @@
 package pl.nowakprojects.service.interfaces;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +11,5 @@ import java.util.Optional;
 public interface BaseRepositoryService<T,ID> {
     List<T> findAll();
     T save(T entity);
-    //void delete(ID id);
     Optional<T> findOne(ID id);
 }

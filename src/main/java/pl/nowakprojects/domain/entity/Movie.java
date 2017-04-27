@@ -35,6 +35,7 @@ public class Movie {
 
     private String language;
 
+    @NotNull
     @Min(Restriction.MOVIE_MIN_RELEASE_YEAR)
     @Column(name = "release_year")
     private Integer releaseYear;
@@ -46,4 +47,6 @@ public class Movie {
         this.language = language;
         this.releaseYear = releaseYear;
     }
+
 }
+

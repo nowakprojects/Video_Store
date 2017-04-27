@@ -3,14 +3,15 @@ package pl.nowakprojects.service.implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.nowakprojects.service.interfaces.MovieService;
 import pl.nowakprojects.service.interfaces.RentalService;
 import pl.nowakprojects.domain.entity.Customer;
 import pl.nowakprojects.domain.entity.Movie;
 import pl.nowakprojects.domain.entity.Rental;
-import pl.nowakprojects.domain.repository.CustomersRepository;
-import pl.nowakprojects.domain.repository.MoviesRepository;
-import pl.nowakprojects.domain.repository.RentalsRepository;
+import pl.nowakprojects.domain.repository.CustomerRepository;
+import pl.nowakprojects.domain.repository.RentalRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,40 +22,40 @@ import java.util.stream.Collectors;
 @Service
 public class RentalServiceImpl implements RentalService {
 
-    private final RentalsRepository rentalsRepository;
-    private final CustomersRepository customersRepository;
-    private final MoviesRepository moviesRepository;
+    private final RentalRepository rentalRepository;
+    private final CustomerRepository customerRepository;
+    private final MovieService movieService;
 
     @Autowired
-    public RentalServiceImpl(RentalsRepository rentalsRepository, CustomersRepository customersRepository, MoviesRepository moviesRepository) {
-        this.rentalsRepository = rentalsRepository;
-        this.customersRepository = customersRepository;
-        this.moviesRepository = moviesRepository;
+    public RentalServiceImpl(RentalRepository rentalRepository, CustomerRepository customerRepository, MovieService movieService) {
+        this.rentalRepository = rentalRepository;
+        this.customerRepository = customerRepository;
+        this.movieService = movieService;
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<Rental> findAll() {
-        return rentalsRepository.findAll();
+        return rentalRepository.findAll();
     }
 
     @Override
     public Rental save(Rental entity) {
-        return rentalsRepository.save(entity);
+        return rentalRepository.save(entity);
     }
 
     @Transactional(readOnly = true)
     @Override
     public Optional<Rental> findOne(Long id) {
-        return id==null ? Optional.empty() : Optional.ofNullable(rentalsRepository.findOne(id));
+        return id == null ? Optional.empty() : Optional.ofNullable(rentalRepository.findOne(id));
     }
 
     @Override
-    public boolean rentVideo(Long customerId, Long movieId) {
+    public boolean rentMovie(Long customerId, Long movieId) {
         boolean availableToRent = isMovieAvailable(movieId);
 
         if (availableToRent)
-            rentalsRepository.save(new Rental(customersRepository.findOne(customerId), moviesRepository.findOne(movieId)));
+            rentalRepository.save(new Rental(customerRepository.findOne(customerId), movieService.findOne(movieId).get()));
 
         return availableToRent;
     }
@@ -62,16 +63,16 @@ public class RentalServiceImpl implements RentalService {
     @Transactional(readOnly = true)
     @Override
     public boolean isMovieAvailable(Long movieId) {
-        return getAllAvailableMovies().contains(moviesRepository.findOne(movieId));
+        return getAllAvailableMovies().contains(movieService.findOne(movieId).get());
     }
 
     public List<Movie> getAllAvailableMovies() {
         List<Movie> alreadyRentedMovies =
-                rentalsRepository.findByReturnDateIsNull().stream()
+                rentalRepository.findByReturnDateIsNull().stream()
                         .map(Rental::getMovie)
                         .collect(Collectors.toList());
 
-        return moviesRepository.findAll().stream()
+        return movieService.findAll().stream()
                 .filter(movie -> !alreadyRentedMovies.contains(movie))
                 .collect(Collectors.toList());
     }
@@ -79,7 +80,12 @@ public class RentalServiceImpl implements RentalService {
     @Transactional(readOnly = true)
     @Override
     public List<Customer> getAllCustomers() {
-        return customersRepository.findAll();
+        return customerRepository.findAll();
     }
 
+    @Transactional
+    @Override
+    public void returnMovie(Long rentalId) {
+        findOne(rentalId).ifPresent(rental -> rental.setReturnDate(LocalDateTime.now()));
+    }
 }

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import pl.nowakprojects.domain.entity.Customer;
-import pl.nowakprojects.domain.repository.CustomersRepository;
+import pl.nowakprojects.domain.repository.CustomerRepository;
 
 /**
  * Created by Mateusz on 24.04.2017.
@@ -13,7 +13,7 @@ import pl.nowakprojects.domain.repository.CustomersRepository;
 public class StringToCustomerConverter implements Converter<String, Customer> {
 
     @Autowired
-    private CustomersRepository repository;
+    private CustomerRepository repository;
 
     @Override
     public Customer convert(String idString) {

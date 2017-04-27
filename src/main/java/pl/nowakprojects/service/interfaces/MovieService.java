@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by Mateusz on 22.04.2017.
  */
-public interface MoviesService extends BaseRepositoryService<Movie,Long> {
+public interface MovieService extends BaseRepositoryService<Movie, Long> {
     List<Movie> findByTitle(String title);
 }

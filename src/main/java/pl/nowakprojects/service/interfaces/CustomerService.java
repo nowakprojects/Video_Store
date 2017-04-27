@@ -5,5 +5,5 @@ import pl.nowakprojects.domain.entity.Customer;
 /**
  * Created by Mateusz on 22.04.2017.
  */
-public interface CustomersService extends BaseRepositoryService<Customer,Long> {
+public interface CustomerService extends BaseRepositoryService<Customer, Long> {
 }

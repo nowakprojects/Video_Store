@@ -17,6 +17,8 @@ VALUES
     ('Star Wars VI','SCIENCE_FICTION','George Lucas','English',1983),
     ('Star Wars VII','SCIENCE_FICTION','J. J. Abrams','English',2016),
     ('Titanic','DRAMA','James Cameron','English',1997),
-    ('Avatar','SCIENCE_FICTION','James Cameron','English',2009);
+  ('Avatar', 'SCIENCE_FICTION', 'James Cameron', 'English', 2009),
+  ('Star Wars I', 'SCIENCE_FICTION', 'George Lucas', 'Polish', 1999),
+  ('Titanic', 'DRAMA', 'James Cameron', 'Polish', 1997);
 
 
