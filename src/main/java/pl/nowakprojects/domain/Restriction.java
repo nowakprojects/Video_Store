@@ -1,4 +1,4 @@
-package pl.nowakprojects.database;
+package pl.nowakprojects.domain;
 
 /**
  * Created by Mateusz on 26.04.2017.

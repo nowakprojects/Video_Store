@@ -1,9 +1,5 @@
-package pl.nowakprojects.buisnesslogic.interfaces;
+package pl.nowakprojects.service.interfaces;
 
-import org.springframework.transaction.annotation.Transactional;
-import pl.nowakprojects.database.entity.Customer;
-
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 

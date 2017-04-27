@@ -1,6 +1,6 @@
-package pl.nowakprojects.buisnesslogic.interfaces;
+package pl.nowakprojects.service.interfaces;
 
-import pl.nowakprojects.database.entity.Customer;
+import pl.nowakprojects.domain.entity.Customer;
 
 /**
  * Created by Mateusz on 22.04.2017.

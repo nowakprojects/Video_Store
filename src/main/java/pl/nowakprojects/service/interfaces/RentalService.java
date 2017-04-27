@@ -1,8 +1,8 @@
-package pl.nowakprojects.buisnesslogic.interfaces;
+package pl.nowakprojects.service.interfaces;
 
-import pl.nowakprojects.database.entity.Customer;
-import pl.nowakprojects.database.entity.Movie;
-import pl.nowakprojects.database.entity.Rental;
+import pl.nowakprojects.domain.entity.Customer;
+import pl.nowakprojects.domain.entity.Movie;
+import pl.nowakprojects.domain.entity.Rental;
 
 import java.util.List;
 

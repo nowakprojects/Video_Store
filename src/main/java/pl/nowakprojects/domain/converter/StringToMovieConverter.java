@@ -1,10 +1,10 @@
-package pl.nowakprojects.database.converter;
+package pl.nowakprojects.domain.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import pl.nowakprojects.database.entity.Movie;
-import pl.nowakprojects.database.repository.MoviesRepository;
+import pl.nowakprojects.domain.entity.Movie;
+import pl.nowakprojects.domain.repository.MoviesRepository;
 
 /**
  * Created by Mateusz on 24.04.2017.

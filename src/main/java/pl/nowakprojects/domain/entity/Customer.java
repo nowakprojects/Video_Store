@@ -1,4 +1,4 @@
-package pl.nowakprojects.database.entity;
+package pl.nowakprojects.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

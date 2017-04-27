@@ -1,14 +1,13 @@
-package pl.nowakprojects.buisnesslogic.implementation;
+package pl.nowakprojects.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-import pl.nowakprojects.buisnesslogic.interfaces.CustomersService;
-import pl.nowakprojects.database.entity.Customer;
-import pl.nowakprojects.database.repository.CustomersRepository;
+import pl.nowakprojects.service.interfaces.CustomersService;
+import pl.nowakprojects.domain.entity.Customer;
+import pl.nowakprojects.domain.repository.CustomersRepository;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 

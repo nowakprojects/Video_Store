@@ -1,7 +1,6 @@
-package pl.nowakprojects.web.controller;
+package pl.nowakprojects.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,8 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.nowakprojects.buisnesslogic.interfaces.RentalService;
-import pl.nowakprojects.database.entity.Rental;
+import pl.nowakprojects.service.interfaces.RentalService;
+import pl.nowakprojects.domain.entity.Rental;
 
 import javax.validation.Valid;
 

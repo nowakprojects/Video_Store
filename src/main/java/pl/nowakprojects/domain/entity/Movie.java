@@ -1,17 +1,12 @@
-package pl.nowakprojects.database.entity;
+package pl.nowakprojects.domain.entity;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
-import pl.nowakprojects.database.Restriction;
+import pl.nowakprojects.domain.Restriction;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.Year;
 
 /**
  * Created by Mateusz on 22.04.2017.

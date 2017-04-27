@@ -1,10 +1,10 @@
-package pl.nowakprojects.database.converter;
+package pl.nowakprojects.domain.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import pl.nowakprojects.database.entity.Customer;
-import pl.nowakprojects.database.repository.CustomersRepository;
+import pl.nowakprojects.domain.entity.Customer;
+import pl.nowakprojects.domain.repository.CustomersRepository;
 
 /**
  * Created by Mateusz on 24.04.2017.

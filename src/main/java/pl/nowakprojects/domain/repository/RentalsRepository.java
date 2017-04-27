@@ -1,7 +1,7 @@
-package pl.nowakprojects.database.repository;
+package pl.nowakprojects.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.nowakprojects.database.entity.Rental;
+import pl.nowakprojects.domain.entity.Rental;
 
 import java.util.Date;
 import java.util.List;

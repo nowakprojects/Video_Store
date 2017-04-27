@@ -1,18 +1,15 @@
-package pl.nowakprojects.web.controller;
+package pl.nowakprojects.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.nowakprojects.buisnesslogic.interfaces.MoviesService;
-import pl.nowakprojects.database.entity.Customer;
-import pl.nowakprojects.database.entity.Genre;
-import pl.nowakprojects.database.entity.Movie;
+import pl.nowakprojects.service.interfaces.MoviesService;
+import pl.nowakprojects.domain.entity.Genre;
+import pl.nowakprojects.domain.entity.Movie;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * Created by Mateusz on 22.04.2017.

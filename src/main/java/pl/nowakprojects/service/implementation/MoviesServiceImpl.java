@@ -1,12 +1,11 @@
-package pl.nowakprojects.buisnesslogic.implementation;
+package pl.nowakprojects.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.nowakprojects.buisnesslogic.interfaces.MoviesService;
-import pl.nowakprojects.database.entity.Genre;
-import pl.nowakprojects.database.entity.Movie;
-import pl.nowakprojects.database.repository.MoviesRepository;
+import pl.nowakprojects.service.interfaces.MoviesService;
+import pl.nowakprojects.domain.entity.Movie;
+import pl.nowakprojects.domain.repository.MoviesRepository;
 
 import java.util.List;
 import java.util.Optional;

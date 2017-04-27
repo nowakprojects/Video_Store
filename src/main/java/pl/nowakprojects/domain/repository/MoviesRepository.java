@@ -1,8 +1,7 @@
-package pl.nowakprojects.database.repository;
+package pl.nowakprojects.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import pl.nowakprojects.database.entity.Movie;
+import pl.nowakprojects.domain.entity.Movie;
 
 import java.util.List;
 

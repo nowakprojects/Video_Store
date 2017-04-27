@@ -1,9 +1,8 @@
-package pl.nowakprojects.buisnesslogic.interfaces;
+package pl.nowakprojects.service.interfaces;
 
-import pl.nowakprojects.database.entity.Movie;
+import pl.nowakprojects.domain.entity.Movie;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by Mateusz on 22.04.2017.

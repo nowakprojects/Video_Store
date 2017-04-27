@@ -1,15 +1,15 @@
-package pl.nowakprojects.buisnesslogic.implementation;
+package pl.nowakprojects.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.nowakprojects.buisnesslogic.interfaces.RentalService;
-import pl.nowakprojects.database.entity.Customer;
-import pl.nowakprojects.database.entity.Movie;
-import pl.nowakprojects.database.entity.Rental;
-import pl.nowakprojects.database.repository.CustomersRepository;
-import pl.nowakprojects.database.repository.MoviesRepository;
-import pl.nowakprojects.database.repository.RentalsRepository;
+import pl.nowakprojects.service.interfaces.RentalService;
+import pl.nowakprojects.domain.entity.Customer;
+import pl.nowakprojects.domain.entity.Movie;
+import pl.nowakprojects.domain.entity.Rental;
+import pl.nowakprojects.domain.repository.CustomersRepository;
+import pl.nowakprojects.domain.repository.MoviesRepository;
+import pl.nowakprojects.domain.repository.RentalsRepository;
 
 import java.util.List;
 import java.util.Optional;

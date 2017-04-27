@@ -1,8 +1,7 @@
-package pl.nowakprojects.database.repository;
+package pl.nowakprojects.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.nowakprojects.database.entity.Customer;
-import pl.nowakprojects.database.entity.Movie;
+import pl.nowakprojects.domain.entity.Customer;
 
 /**
  * Created by Mateusz on 22.04.2017.
