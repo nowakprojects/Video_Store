@@ -24,10 +24,6 @@ layout:decorator = "layout/default">
                     <input type="hidden" name="id" th:value="${customer.id}" />
                     <button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">mode_edit</i>Edit</button>
                 </form>
-                <form th:action="@{/customer}" th:method="delete">
-                    <input type="hidden" name="id" th:value="${customer.id}" />
-                    <button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">delete</i>Delete</button>
-                </form>
             </div>
         </li>
     </ul>
