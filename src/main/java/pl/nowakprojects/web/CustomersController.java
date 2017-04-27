@@ -37,7 +37,7 @@ public class CustomersController {
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public String showCustomerForm(@RequestParam(value = "id", required = false) Long id, Model model) {
-        Customer currentCustomer = customersService.findOne(id).orElseGet(() -> new Customer());
+        Customer currentCustomer = customersService.findOne(id).orElseGet(Customer::new);
 
         model.addAttribute(ATTR_CUSTOMER, currentCustomer);
 

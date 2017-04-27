@@ -44,7 +44,7 @@ public class RentalsController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String rentalForm(@RequestParam(value = "id", required = false) Long id, Model model){
-        Rental currentRental = rentalService.findOne(id).orElse(new Rental());
+        Rental currentRental = rentalService.findOne(id).orElseGet(Rental::new);
 
         model.addAttribute(ATTR_RENTAL,currentRental);
         model.addAttribute(ATTR_MOVIES, rentalService.getAllAvailableMovies());

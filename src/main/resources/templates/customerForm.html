@@ -13,7 +13,7 @@
         <div class="row">
             <input type="hidden" name="id" th:value="${customer.id}"/>
             <div class="input-field col s6">
-                <input th:field="${customer.surname}" id="surname" type="text"/>
+                <input th:field="${customer.surname}" id="surname" type="text" onkeyup="showAlert()"/>
                 <label for="surname">Surname</label>
             </div>
             <div class="input-field col s6">
@@ -57,11 +57,9 @@
 </div>
 
 <th:block layout:fragment="scripts">
-    <script type="application/javascript" th:inline="javascript">
-        function validateOnlyText() {
-            var element = document.getElementsByClassName('only-text');
-            element.value = element.value.replace(/[^a-zA-Z0-9@]+/, '');
-            window.alert("Yo!");
+    <script type="application/javascript">
+        function showAlert() {
+            Window.showAlert("Elo")
         }
     </script>
 </th:block>
