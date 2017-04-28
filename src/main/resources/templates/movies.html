@@ -46,7 +46,7 @@ layout:decorator = "layout/default">
     </ul>
 
     <div th:if="${moviesList.isEmpty()}">
-        <h4 th:text="|There is currently no movies in database. You can add one by the button below.|">EmptyList</h4>
+        <h4 th:text="|No movies found. You can add one by the button below.|">EmptyList</h4>
     </div>
 
     <form method="get" th:action="@{/movie}">

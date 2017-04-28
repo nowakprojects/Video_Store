@@ -42,11 +42,6 @@ public class MovieController {
         return "movies";
     }
 
-    @GetMapping("/search")
-    public String showMoviesSearchPage(Model model) {
-        return "searchPage";
-    }
-
     @GetMapping("/movie")
     public String showMovieForm(@RequestParam(name = "id", required = false) Long id, Model model) {
         Movie currentMovie = movieService.findOne(id).orElseGet(Movie::new);
