@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <h2 class="indigo-text center" th:text="|Hen face! Something went wrong...|">Error message</h2>
+        <form method="get" th:action="@{/}">
+            <div class="row s12">
+                <button class="waves-effect waves-light btn" type="submit"><i class="material-icons left">replay</i>RETURN
+                    TO MAIN PAGE
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

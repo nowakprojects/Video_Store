@@ -28,7 +28,7 @@ public class Movie {
 
     @NotNull
     @Column(nullable = false)
-    @Length(min = MOVIE_TITLE_LENGTH_MIN, max = MOVIE_TITLE_LENGTH_MAX)
+    @Length(min = 3, max = 128)
     private String title;
 
     @NotNull
