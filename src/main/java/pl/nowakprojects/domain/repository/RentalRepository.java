@@ -1,6 +1,7 @@
 package pl.nowakprojects.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import pl.nowakprojects.domain.entity.Rental;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Optional;
 /**
  * Created by Mateusz on 22.04.2017.
  */
+@Repository
 public interface RentalRepository extends JpaRepository<Rental, Long> {
     List<Rental> findByMovieId(Long movieId);
     List<Rental> findByCustomerIdAndMovieId(Long customerId, Long movieId);
