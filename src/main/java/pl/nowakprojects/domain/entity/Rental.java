@@ -24,13 +24,11 @@ public class Rental {
     private Long id;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "customer")
+    @ManyToOne
     private Customer customer;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "movie")
     private Movie movie;
 
     @Column(name = "rent_date", updatable = false)

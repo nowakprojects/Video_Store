@@ -16,7 +16,6 @@ import java.util.Optional;
 @Service
 public class MovieServiceImpl implements MovieService {
 
-    @Autowired
     private final MovieRepository movieRepository;
 
     @Autowired

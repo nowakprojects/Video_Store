@@ -2,14 +2,15 @@ package pl.nowakprojects.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-import pl.nowakprojects.service.interfaces.MovieService;
-import pl.nowakprojects.service.interfaces.RentalService;
 import pl.nowakprojects.domain.entity.Customer;
 import pl.nowakprojects.domain.entity.Movie;
 import pl.nowakprojects.domain.entity.Rental;
 import pl.nowakprojects.domain.repository.CustomerRepository;
 import pl.nowakprojects.domain.repository.RentalRepository;
+import pl.nowakprojects.service.interfaces.MovieService;
+import pl.nowakprojects.service.interfaces.RentalService;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class RentalServiceImpl implements RentalService {
-    
+
     private final RentalRepository rentalRepository;
     private final CustomerRepository customerRepository;
     private final MovieService movieService;
@@ -50,6 +51,7 @@ public class RentalServiceImpl implements RentalService {
         return id == null ? Optional.empty() : Optional.ofNullable(rentalRepository.findOne(id));
     }
 
+    @Transactional
     @Override
     public boolean rentMovie(Long customerId, Long movieId) {
         boolean availableToRent = isMovieAvailable(movieId);
@@ -83,7 +85,7 @@ public class RentalServiceImpl implements RentalService {
         return customerRepository.findAll();
     }
 
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     @Override
     public void returnMovie(Long rentalId) {
         findOne(rentalId).ifPresent(rental -> rental.setReturnDate(LocalDateTime.now()));
