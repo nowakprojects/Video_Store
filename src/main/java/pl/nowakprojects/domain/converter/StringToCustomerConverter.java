@@ -12,8 +12,12 @@ import pl.nowakprojects.domain.repository.CustomerRepository;
 @Component
 public class StringToCustomerConverter implements Converter<String, Customer> {
 
+    private final CustomerRepository repository;
+
     @Autowired
-    private CustomerRepository repository;
+    public StringToCustomerConverter(CustomerRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Customer convert(String idString) {

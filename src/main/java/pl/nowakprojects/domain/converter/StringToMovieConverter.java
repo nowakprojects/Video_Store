@@ -12,8 +12,12 @@ import pl.nowakprojects.domain.repository.MovieRepository;
 @Component
 public class StringToMovieConverter implements Converter<String, Movie> {
 
+    private final MovieRepository repository;
+
     @Autowired
-    private MovieRepository repository;
+    public StringToMovieConverter(MovieRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Movie convert(String idString) {
