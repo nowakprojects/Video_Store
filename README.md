@@ -1,10 +1,10 @@
 
-## PGS Software - Staż Java - Zadanie rekrutacyjne
+# PGS Software - Staż Java - Zadanie rekrutacyjne
 
 ## Moje rozwiązanie
 Aby rozpocząć pracę z aplikacją proszę uruchomić program i wejśc w przeglądarce internetowej na adres: http://localhost:8080/
 
-Do rozwiązania użyłem języka Java 8, a w szczególności frameworka Spring, wykorzystując umiejętności nabyte podczas Akademii Java. Było to także moje pierwsze starcie z jakąkolwiek formą front-endu - aplikacja udostępnia w formie interfejsu wszystkie wymagane funkcje. Został wykorzystany system budowania Maven.
+Do rozwiązania użyłem języka Java 8, a w szczególności frameworka Spring, wykorzystując umiejętności nabyte podczas Akademii Java. Było to także moje pierwsze starcie z jakąkolwiek formą front-endu (HTML, z użyciem Materialize.css oraz szablonów Thymyleaf)- aplikacja udostępnia w formie interfejsu wszystkie wymagane funkcje. Został wykorzystany system budowania Maven.
 
 Użyta baza danych, to Embedeed Apache Derby (z racji wymagania o nie instalowaniu sterowników) - jest dobra do fazy tworzenia oprogramowania i testowania. W razie potrzeby zleceniodawcy, może być zamieniona na inną, spełniającą jego wymagania. 
         
