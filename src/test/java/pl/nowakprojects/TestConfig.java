@@ -1,6 +1,7 @@
 package pl.nowakprojects;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -20,6 +21,7 @@ import javax.sql.DataSource;
  * Created by piotr on 04.04.17.
  */
 @Configuration
+@ComponentScan(basePackageClasses = MovieServiceImpl.class)
 @EnableJpaRepositories("pl.nowakprojects.domain.repository")
 public class TestConfig {
     @Bean
@@ -52,8 +54,4 @@ public class TestConfig {
         return txManager;
     }
 
-    @Bean
-    public MovieService movieService() {
-        return new MovieServiceImpl();
-    }
 }

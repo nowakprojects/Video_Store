@@ -56,6 +56,31 @@ public class MovieServiceTests {
                         1999)
         );
         assertThat(movieService.findAll()).isNotEmpty();
+        assertThat(movieService.findAll()).hasSize(1);
+    }
+
+
+    @Test
+    public void movieShouldBeUpdated() throws Exception {
+        movieService.save(
+                new Movie(null,
+                        "Star Wars I",
+                        Genre.SCIENCE_FICTION,
+                        "George Lucas",
+                        "English",
+                        1999)
+        );
+        movieService.save(
+                new Movie(movieService.findAll().get(0).getId(),
+                        "PGS Software",
+                        Genre.SCIENCE_FICTION,
+                        "George Lucas",
+                        "English",
+                        1999)
+        );
+        assertThat(movieService.findAll()).isNotEmpty();
+        assertThat(movieService.findAll()).hasSize(1);
+        assertThat(movieService.findOne(1L).get().getTitle()).isEqualTo("PGS Software");
     }
 
     @Test

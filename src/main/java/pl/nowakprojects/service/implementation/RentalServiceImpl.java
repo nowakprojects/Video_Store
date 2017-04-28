@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class RentalServiceImpl implements RentalService {
-
+    
     private final RentalRepository rentalRepository;
     private final CustomerRepository customerRepository;
     private final MovieService movieService;
