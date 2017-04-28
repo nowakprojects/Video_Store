@@ -40,6 +40,7 @@ public class RentalServiceImpl implements RentalService {
         return rentalRepository.findAll();
     }
 
+    @Transactional
     @Override
     public Rental save(Rental entity) {
         return rentalRepository.save(entity);
@@ -56,8 +57,11 @@ public class RentalServiceImpl implements RentalService {
     public boolean rentMovie(Long customerId, Long movieId) {
         boolean availableToRent = isMovieAvailable(movieId);
 
-        if (availableToRent)
-            rentalRepository.save(new Rental(customerRepository.findOne(customerId), movieService.findOne(movieId).get()));
+        if (availableToRent) {
+            rentalRepository.save(
+                    new Rental(customerRepository.findOne(customerId), movieService.findOne(movieId).get())
+            );
+        }
 
         return availableToRent;
     }
@@ -65,9 +69,12 @@ public class RentalServiceImpl implements RentalService {
     @Transactional(readOnly = true)
     @Override
     public boolean isMovieAvailable(Long movieId) {
-        return getAllAvailableMovies().contains(movieService.findOne(movieId).get());
+        return movieService.findOne(movieId).isPresent() &&
+                getAllAvailableMovies().contains(movieService.findOne(movieId).get());
     }
 
+    @Transactional(readOnly = true)
+    @Override
     public List<Movie> getAllAvailableMovies() {
         List<Movie> alreadyRentedMovies =
                 rentalRepository.findByReturnDateIsNull().stream()

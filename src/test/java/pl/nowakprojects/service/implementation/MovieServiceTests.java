@@ -12,11 +12,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
 import pl.nowakprojects.TestConfig;
 import pl.nowakprojects.domain.entity.Genre;
 import pl.nowakprojects.domain.entity.Movie;
-import pl.nowakprojects.domain.repository.CustomerRepository;
 import pl.nowakprojects.domain.repository.MovieRepository;
 import pl.nowakprojects.service.interfaces.MovieService;
 
@@ -46,7 +44,7 @@ public class MovieServiceTests {
     }
 
     @Test
-    public void movieShouldBeSaved() throws Exception {
+    public void saveShouldInsertMovie() throws Exception {
         movieService.save(
                 new Movie(null,
                         "Star Wars I",
@@ -61,7 +59,7 @@ public class MovieServiceTests {
 
 
     @Test
-    public void movieShouldBeUpdated() throws Exception {
+    public void saveShouldUpdateMovie() throws Exception {
         movieService.save(
                 new Movie(null,
                         "Star Wars I",

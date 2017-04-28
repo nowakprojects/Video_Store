@@ -42,7 +42,7 @@ public class Customer {
     private String email;
 
     @Column
-    @Size(min = 9, max = 9)
+    @Size(min = CUSTOMER_PHONE_LENGTH_MIN_MAX, max = CUSTOMER_PHONE_LENGTH_MIN_MAX)
     @Pattern(regexp = ONLY_NUMBERS_REGEX_PATTERN, message = ONLY_NUMBER_MESSAGE)
     private String phone;
 

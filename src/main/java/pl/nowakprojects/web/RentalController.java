@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.nowakprojects.service.interfaces.RentalService;
 import pl.nowakprojects.domain.entity.Rental;
+import pl.nowakprojects.service.interfaces.RentalService;
 
 import javax.validation.Valid;
 
@@ -28,15 +28,10 @@ public class RentalController {
         this.rentalService = rentalService;
     }
 
-    /*@RequestMapping("/")
-    public String index(){
-        return "rentalForm";
-    }
-    */
     @GetMapping("/history")
     public String allRentalList(Model model){
         model.addAttribute(ATTR_RENTAL_LIST, rentalService.findAll());
-        return "rentalList";
+        return "rentalHistory";
     }
 
     @GetMapping("/")

@@ -1,5 +1,20 @@
+#PGS Software - Staż Java - Zadanie rekrutacyjne
 
-# Zadanie Java
+## Moje rozwiązanie
+Aby rozpocząć pracę z aplikacją proszę uruchomić program i wejśc w przeglądarce internetowej na adres: http://localhost:8080/
+
+Do rozwiązania użyłem języka Java 8, a w szczególności frameworka Spring, wykorzystując umiejętności nabyte podczas Akademii Java. Było to także moje pierwsze starcie z jakąkolwiek formą front-endu - aplikacja udostępnia w formie interfejsu wszystkie wymagane funkcje. Został wykorzystany system budowania Maven.
+
+Użyta baza danych, to Embedeed Apache Derby (z racji wymagania o nie instalowaniu sterowników) - jest dobra do fazy tworzenia oprogramowania i testowania. W razie potrzeby zleceniodawcy, może być zamieniona na inną, spełniającą jego wymagania. 
+        
+Napisałem także kilka testów jednostkowych, niestety nie zdążyłem ich dopracować. W przyszłości planowane jest także dodanie Spring Security, do zabezpieczeznia naszego systemu, aby uniemożliwić niepowołanym osobom (spoza pracowników wypożyczalni) dokonywania zmian.
+
+    
+Uwaga: W programie została użyta biblioteka Project Lombok - jeśli Twój IDE będzie sygnalizował błędy, program i tak powinien się skompilować. Znaczy to, że nie masz zainstalowanego pluginu, do odpowiedniego rozpoznawania adnotacji.
+
+Miłego używania/ czytania kodu!
+
+## Zadanie Java
 
 ### Problem
 Prowadzimy wypożyczalnię filmów. Jesteśmy zobowiązani dostarczyć oprogramowanie wspomagające pracę wypożyczalni.

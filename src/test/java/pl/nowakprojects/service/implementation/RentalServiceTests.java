@@ -79,7 +79,7 @@ public class RentalServiceTests {
     }
 
     @Test
-    public void rentShouldBeSaved() {
+    public void saveShouldInsertRental() {
         rentalService.rentMovie(1L, 1L);
         assertThat(rentalService.findAll()).hasSize(1);
     }
