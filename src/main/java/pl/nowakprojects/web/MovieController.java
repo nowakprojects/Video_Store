@@ -21,6 +21,7 @@ import javax.validation.Valid;
 public class MovieController {
 
     private final static String ATTR_MOVIE = "movie";
+    private final static String ATTR_SEARCH_MOVIE_TITLE = "searchTitle";
     private static final String ATTR_MOVIES_LIST = "moviesList";
     private static final String ATTR_GENRES_LIST = "genresList";
 
@@ -33,6 +34,7 @@ public class MovieController {
 
     @GetMapping("/movies")
     public String showMoviesList(@RequestParam(defaultValue = "") String title, Model model) {
+        model.addAttribute(ATTR_SEARCH_MOVIE_TITLE, title);
         model.addAttribute(
                 ATTR_MOVIES_LIST,
                 title.isEmpty() ? movieService.findAll() : movieService.findByTitle(title)
