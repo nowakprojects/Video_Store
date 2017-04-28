@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import pl.nowakprojects.service.interfaces.MovieService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.nowakprojects.domain.entity.Genre;
 import pl.nowakprojects.domain.entity.Movie;
+import pl.nowakprojects.service.interfaces.MovieService;
 
 import javax.validation.Valid;
 
@@ -30,12 +33,10 @@ public class MovieController {
 
     @GetMapping("/movies")
     public String showMoviesList(@RequestParam(defaultValue = "") String title, Model model) {
-
         model.addAttribute(
                 ATTR_MOVIES_LIST,
                 title.isEmpty() ? movieService.findAll() : movieService.findByTitle(title)
         );
-
         return "movies";
     }
 
@@ -45,7 +46,7 @@ public class MovieController {
     }
 
     @GetMapping("/movie")
-    public String showMovieForm(@PathVariable(name = "id", required = false) Long id, Model model) {
+    public String showMovieForm(@RequestParam(name = "id", required = false) Long id, Model model) {
         Movie currentMovie = movieService.findOne(id).orElseGet(Movie::new);
         model.addAttribute(ATTR_MOVIE, currentMovie);
         model.addAttribute(ATTR_GENRES_LIST, Genre.values());

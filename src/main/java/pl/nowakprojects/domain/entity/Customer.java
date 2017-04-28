@@ -7,6 +7,10 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import static pl.nowakprojects.domain.Restriction.*;
 
 /**
  * Created by Mateusz on 22.04.2017.
@@ -24,10 +28,12 @@ public class Customer {
 
     @NotEmpty
     @Column(nullable = false)
+    @Pattern(regexp = ONLY_LETTERS_REGEX_PATTERN, message = ONLY_LETTERS_MESSAGE)
     private String surname;
 
     @NotEmpty
     @Column(nullable = false)
+    @Pattern(regexp = ONLY_LETTERS_REGEX_PATTERN, message = ONLY_LETTERS_MESSAGE)
     private String name;
 
     @NotEmpty
@@ -36,6 +42,8 @@ public class Customer {
     private String email;
 
     @Column
+    @Size(min = 9, max = 9)
+    @Pattern(regexp = ONLY_NUMBERS_REGEX_PATTERN, message = ONLY_NUMBER_MESSAGE)
     private String phone;
 
     @NotEmpty
@@ -44,6 +52,7 @@ public class Customer {
 
     @NotEmpty
     @Column(nullable = false)
+    @Pattern(regexp = ONLY_LETTERS_REGEX_PATTERN, message = ONLY_LETTERS_MESSAGE)
     private String city;
 
 

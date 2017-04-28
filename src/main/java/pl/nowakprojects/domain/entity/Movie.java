@@ -1,12 +1,16 @@
 package pl.nowakprojects.domain.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import pl.nowakprojects.domain.Restriction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import static pl.nowakprojects.domain.Restriction.*;
 
 /**
  * Created by Mateusz on 22.04.2017.
@@ -31,12 +35,14 @@ public class Movie {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
+    @Pattern(regexp = ONLY_LETTERS_REGEX_PATTERN, message = ONLY_LETTERS_MESSAGE)
     private String director;
 
+    @Pattern(regexp = ONLY_LETTERS_REGEX_PATTERN, message = ONLY_LETTERS_MESSAGE)
     private String language;
 
     @NotNull
-    @Min(Restriction.MOVIE_MIN_RELEASE_YEAR)
+    @Min(MOVIE_MIN_RELEASE_YEAR)
     @Column(name = "release_year")
     private Integer releaseYear;
 

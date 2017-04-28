@@ -13,7 +13,7 @@
         <div class="row">
             <input type="hidden" name="id" th:value="${movie.id}" />
             <div class="input-field col s6">
-                <input th:field="${movie.title}" id="title" type="text" th:errorclass="invalid"/>
+                <input th:field="${movie.title}" id="title" type="text"/>
                 <label for="title">Title</label>
                 <div th:errors="*{title}" class="red-text">Error</div>
             </div>

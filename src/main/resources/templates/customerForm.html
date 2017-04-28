@@ -15,30 +15,36 @@
             <div class="input-field col s6">
                 <input th:field="${customer.surname}" id="surname" type="text"/>
                 <label for="surname">Surname</label>
+                <div th:errors="*{surname}" class="red-text">Error</div>
             </div>
             <div class="input-field col s6">
                 <input th:field="${customer.name}" id="name" type="text"/>
                 <label for="name">Name</label>
+                <div th:errors="*{name}" class="red-text">Error</div>
             </div>
 
             <div class="input-field col s6">
                 <input th:field="${customer.email}" id="email" type="email"/>
                 <label for="email">E-mail address</label>
+                <div th:errors="*{email}" class="red-text">Error</div>
             </div>
 
             <div class="input-field col s6">
                 <input th:field="${customer.phone}" id="phone" type="tel"/>
                 <label for="phone">Phone Number</label>
+                <div th:errors="*{phone}" class="red-text">Error</div>
             </div>
 
             <div class="input-field col s6">
                 <input th:field="${customer.address}" id="address" type="text"/>
                 <label for="address">Home address</label>
+                <div th:errors="*{address}" class="red-text">Error</div>
             </div>
 
             <div class="input-field col s6">
                 <input th:field="${customer.city}" id="city" type="text"/>
                 <label for="city">City</label>
+                <div th:errors="*{city}" class="red-text">Error</div>
             </div>
         </div>
 
