@@ -1,4 +1,5 @@
-#PGS Software - Staż Java - Zadanie rekrutacyjne
+
+## PGS Software - Staż Java - Zadanie rekrutacyjne
 
 ## Moje rozwiązanie
 Aby rozpocząć pracę z aplikacją proszę uruchomić program i wejśc w przeglądarce internetowej na adres: http://localhost:8080/
