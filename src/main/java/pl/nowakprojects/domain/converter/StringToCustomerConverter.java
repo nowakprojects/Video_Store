@@ -9,6 +9,7 @@ import pl.nowakprojects.domain.repository.CustomerRepository;
 /**
  * Created by Mateusz on 24.04.2017.
  */
+
 @Component
 public class StringToCustomerConverter implements Converter<String, Customer> {
 
