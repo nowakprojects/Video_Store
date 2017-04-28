@@ -16,12 +16,9 @@ import java.util.Optional;
 @Service
 public class MovieServiceImpl implements MovieService {
 
-    private final MovieRepository movieRepository;
-
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
+    private MovieRepository movieRepository;
+
 
     @Transactional(readOnly = true)
     public List<Movie> findAll() {
