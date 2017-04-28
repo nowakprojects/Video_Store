@@ -29,16 +29,16 @@ public class RentalController {
     }
 
     @GetMapping("/history")
-    public String allRentalList(Model model){
+    public String allRentalList(Model model) {
         model.addAttribute(ATTR_RENTAL_LIST, rentalService.findAll());
         return "rentalHistory";
     }
 
     @GetMapping("/")
-    public String rentalForm(@RequestParam(value = "id", required = false) Long id, Model model){
+    public String rentalForm(@RequestParam(value = "id", required = false) Long id, Model model) {
         Rental currentRental = rentalService.findOne(id).orElseGet(Rental::new);
 
-        model.addAttribute(ATTR_RENTAL,currentRental);
+        model.addAttribute(ATTR_RENTAL, currentRental);
         model.addAttribute(ATTR_MOVIES, rentalService.getAllAvailableMovies());
         model.addAttribute(ATTR_CUSTOMERS, rentalService.getAllCustomers());
 
@@ -46,10 +46,10 @@ public class RentalController {
     }
 
     @PostMapping("/rent")
-    public String rent(@Valid @ModelAttribute("rental") Rental rental, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors())
+    public String rent(@Valid @ModelAttribute("rental") Rental rental, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors())
             return "redirect:/";
-        else{
+        else {
             rentalService.save(rental);
         }
 
