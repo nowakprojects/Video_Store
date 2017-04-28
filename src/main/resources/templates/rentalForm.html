@@ -13,7 +13,8 @@
     <h2 class="indigo-text center">Rent a movie</h2>
     <h3 th:if="${customers.isEmpty()}"
         th:text="|There is no customers in database. Please add someone before renting.|">No customers</h3>
-    <h3 th:if="${movies.isEmpty()}" th:text="|There is no movies in database. Please add any before renting|">No
+    <h3 th:if="${movies.isEmpty()}"
+        th:text="|There is currently no movies available to rent. Please add any before renting|">No
         movies</h3>
     <form th:if="${!movies.isEmpty() and !customers.isEmpty()}" th:action="@{/rent}" th:object="${rental}" method="post"
           class="col m8 s12 offset-m2">
