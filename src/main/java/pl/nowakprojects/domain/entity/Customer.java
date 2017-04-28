@@ -31,12 +31,11 @@ public class Customer {
     private String name;
 
     @NotEmpty
-    @Column
+    @Column(nullable = false)
     @Email
     private String email;
 
-    @NotEmpty
-    @Column(nullable = false)
+    @Column
     private String phone;
 
     @NotEmpty
@@ -46,4 +45,14 @@ public class Customer {
     @NotEmpty
     @Column(nullable = false)
     private String city;
+
+
+    public Customer(String surname, String name, String email, String phone, String address, String city) {
+        this.surname = surname;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.city = city;
+    }
 }

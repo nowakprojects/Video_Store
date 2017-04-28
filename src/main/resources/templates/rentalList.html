@@ -49,11 +49,15 @@
             </li>
         </ul>
 
-        <!--<form method="get" th:action="@{/customer}">
+        <div th:if="${rental_list.isEmpty()}">
+            <h4 th:text="|There is currently no history. Let's rent any movie!|">EmptyList</h4>
+        </div>
+
+        <form method="get" th:action="@{/}">
             <div class = "row s12">
                 <button id="addFab" class="btn-floating btn-large waves-effect waves-light red" type="submit" name="save"><i class="material-icons">add</i></button>
             </div>
-        </form>-->
+        </form>
 
     </div>
 </div>

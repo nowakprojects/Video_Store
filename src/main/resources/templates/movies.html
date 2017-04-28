@@ -11,21 +11,30 @@ layout:decorator = "layout/default">
     <h2 class="indigo-text center" th:text="|Movies list:|">Movies</h2>
     <ul class="collection">
         <li class="collection-item movie row" th:each="movie : ${moviesList}">
-            <div class="col s12">
+            <div class="col s10">
                 <span style="font-weight: bold" class="title" th:text="${movie.title}">Movie Title</span>
             </div>
-            <div class="col s3">
+            <div class="col s2">
+                <form th:action="@{/movie}" th:method="get">
+                    <input type="hidden" name="id" th:value="${movie.id}"/>
+                    <button class="waves-effect waves-light btn" type="submit"><i
+                            class="material-icons left">mode_edit</i>Edit
+                    </button>
+                </form>
+            </div>
+            <div class="col s2">
                 <span class="sub-title" th:text="${'Release year: '.concat(movie.releaseYear)}">Genre</span>
             </div>
-            <div class="col s3">
+            <div class="col s2">
                 <span class="sub-title" th:text="${'Genre: '.concat(movie.genre.name)}">Genre</span>
             </div>
-            <div class="col s3">
+            <div class="col s2">
                 <span class="sub-title" th:text="${'Director: '.concat(movie.director)}">Director</span>
             </div>
-            <div class="col s3">
+            <div class="col s2">
                 <span class="sub-title" th:text="${'Language: '.concat(movie.language)}">Language</span>
             </div>
+
         </li>
 
     </ul>
