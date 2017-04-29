@@ -29,7 +29,7 @@
                 <div class="column s8">
                     <span th:text="${'Movie: '}">Movie</span>
                     <span th:text="${
-                rental.movie.title.concat(' (').concat(rental.movie.releaseYear).concat(') ').concat(rental.movie.director)
+                rental.movie.title.concat(' (').concat(rental.movie.releaseYear).concat(') ').concat(rental.movie.director).concat(' - ').concat(rental.movie.language)
                 }">Movie</span>
                 </div>
                 <div class="column s8">

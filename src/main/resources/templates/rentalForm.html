@@ -24,7 +24,9 @@
                 <select class="form-control" id="movie" th:field="${rental.movie}">
                     <option th:each="movie : ${movies}"
                             th:value = "${movie.id}"
-                            th:text = "${movie.title.concat('   ').concat(movie.director)}">Movie option</option>
+                            th:text="${movie.title.concat('   ').concat(movie.director).concat('  ').concat(movie.language)}">
+                        Movie option
+                    </option>
                 </select>
 
                 <label>Select movie</label>
