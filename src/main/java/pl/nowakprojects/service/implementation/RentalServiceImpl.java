@@ -56,7 +56,7 @@ public class RentalServiceImpl implements RentalService {
     @Override
     public Optional<Rental> rentMovie(Long customerId, Long movieId) {
         Rental savedRental = null;
-        if (isMovieAvailable(movieId)) {
+        if (movieService.findOne(movieId).isPresent() && isMovieAvailable(movieId)) {
             savedRental = rentalRepository.save(
                     new Rental(customerRepository.findOne(customerId), movieService.findOne(movieId).get())
             );

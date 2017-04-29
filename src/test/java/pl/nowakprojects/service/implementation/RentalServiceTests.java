@@ -15,10 +15,13 @@ import pl.nowakprojects.TestConfig;
 import pl.nowakprojects.domain.entity.Customer;
 import pl.nowakprojects.domain.entity.Genre;
 import pl.nowakprojects.domain.entity.Movie;
+import pl.nowakprojects.domain.entity.Rental;
 import pl.nowakprojects.domain.repository.CustomerRepository;
 import pl.nowakprojects.domain.repository.MovieRepository;
 import pl.nowakprojects.domain.repository.RentalRepository;
 import pl.nowakprojects.service.interfaces.RentalService;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -81,23 +84,21 @@ public class RentalServiceTests {
     @Test
     public void saveShouldInsertRental() {
         rentOneMovie();
-
         assertThat(rentalService.findAll()).hasSize(1);
     }
 
     @Test
     public void rentShouldDecreaseAvailableMoviesListSize() {
         int beginAvailableMoviesSize = rentalService.getAllAvailableMovies().size();
-
         rentOneMovie();
-
         assertThat(rentalService.getAllAvailableMovies().size()).isEqualTo(beginAvailableMoviesSize - 1);
     }
+    
 
-    private void rentOneMovie() {
+    private Optional<Rental> rentOneMovie() {
         Customer customer = customerRepository.findAll().get(0);
         Movie movie = movieRepository.findAll().get(0);
-        rentalService.rentMovie(customer.getId(), movie.getId());
+        return rentalService.rentMovie(customer.getId(), movie.getId());
     }
 
 }
