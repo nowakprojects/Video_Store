@@ -54,16 +54,14 @@ public class RentalServiceImpl implements RentalService {
 
     @Transactional
     @Override
-    public boolean rentMovie(Long customerId, Long movieId) {
-        boolean availableToRent = isMovieAvailable(movieId);
-
-        if (availableToRent) {
-            rentalRepository.save(
+    public Optional<Rental> rentMovie(Long customerId, Long movieId) {
+        Rental savedRental = null;
+        if (isMovieAvailable(movieId)) {
+            savedRental = rentalRepository.save(
                     new Rental(customerRepository.findOne(customerId), movieService.findOne(movieId).get())
             );
         }
-
-        return availableToRent;
+        return Optional.ofNullable(savedRental);
     }
 
     @Transactional(readOnly = true)

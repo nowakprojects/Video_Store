@@ -11,7 +11,7 @@ import java.util.Optional;
  * Created by Mateusz on 22.04.2017.
  */
 public interface RentalService extends BaseRepositoryService<Rental,Long> {
-    boolean rentMovie(Long customerId, Long movieId);
+    Optional<Rental> rentMovie(Long customerId, Long movieId);
     List<Movie> getAllAvailableMovies();
     boolean isMovieAvailable(Long movieId);
     List<Customer> getAllCustomers();

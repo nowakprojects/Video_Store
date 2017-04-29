@@ -67,10 +67,10 @@ public class RentalServiceTests {
         movieRepository.save(new Movie(6L, "Star Wars VI", Genre.SCIENCE_FICTION, "George Lucas", "English", 1983));
         movieRepository.save(new Movie(7L, "Titanic", Genre.DRAMA, "James Cameron", "English", 1997));
 
-        customerRepository.save(new Customer(1L, "Jan", "Kowalski", "jan.kowalski@gmail.com", "234123123", "st. Street 1/1", "City 1"));
-        customerRepository.save(new Customer(2L, "Jan", "Kowalski", "koval12@gmail.com", "233223123", "st. Street 1/2", "City 3"));
-        customerRepository.save(new Customer(3L, "Anna", "Nowak", "nowakowa@gmail.com", "233223113", "st. Street 4/4", "City 5"));
-        customerRepository.save(new Customer(4L, "Mateusz", "Nowak", "novakow@gmail.com", "233223113", "st. Street 4/4", "City 5"));
+        customerRepository.save(new Customer(1L, "Jan", "Kowalski", "jan.kowalski@gmail.com", "234123123", "st. Street 1/1", "City"));
+        customerRepository.save(new Customer(2L, "Jan", "Kowalski", "koval12@gmail.com", "233223123", "st. Street 1/2", "City"));
+        customerRepository.save(new Customer(3L, "Anna", "Nowak", "nowakowa@gmail.com", "233223113", "st. Street 4/4", "City"));
+        customerRepository.save(new Customer(4L, "Mateusz", "Nowak", "novakow@gmail.com", "233223113", "st. Street 4/4", "City"));
     }
 
     @Test
@@ -80,9 +80,24 @@ public class RentalServiceTests {
 
     @Test
     public void saveShouldInsertRental() {
-        rentalService.rentMovie(1L, 1L);
+        rentOneMovie();
+
         assertThat(rentalService.findAll()).hasSize(1);
     }
 
+    @Test
+    public void rentShouldDecreaseAvailableMoviesListSize() {
+        int beginAvailableMoviesSize = rentalService.getAllAvailableMovies().size();
+
+        rentOneMovie();
+
+        assertThat(rentalService.getAllAvailableMovies().size()).isEqualTo(beginAvailableMoviesSize - 1);
+    }
+
+    private void rentOneMovie() {
+        Customer customer = customerRepository.findAll().get(0);
+        Movie movie = movieRepository.findAll().get(0);
+        rentalService.rentMovie(customer.getId(), movie.getId());
+    }
 
 }

@@ -49,7 +49,7 @@ public class CustomerRepositoryTests {
                         "jan.kowalski@gmail.com",
                         "234123123",
                         "st. Street 1/1",
-                        "City 1"
+                        "Wroclaw"
                 )
         );
         assertThat(repository.findAll()).isNotEmpty();
@@ -58,7 +58,17 @@ public class CustomerRepositoryTests {
     @Test
     public void customerShouldBeEdited() {
         assertThat(repository.findAll()).isEmpty();
-        customerShouldBeSaved();
+        repository.save(
+                new Customer(
+                        null,
+                        "Jan",
+                        "Kowalski",
+                        "jan.kowalski@gmail.com",
+                        "234123123",
+                        "st. Street 1/1",
+                        "Warsaw"
+                )
+        );
         Customer newCustomer = new Customer(
                 1L,
                 "Marian",
@@ -66,7 +76,7 @@ public class CustomerRepositoryTests {
                 "jan.kowalski@gmail.com",
                 "234123123",
                 "st. Street 1/1",
-                "City 1"
+                "Wroclaw"
         );
         repository.save(newCustomer);
 
